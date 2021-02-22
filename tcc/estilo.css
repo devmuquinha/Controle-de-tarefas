@@ -1,5 +1,4 @@
 .gp-box{
-
 width: 470px;
 height: 508px;
 left:400px;
@@ -35,7 +34,7 @@ height: 50px;
 left: 50px;
 top: 420px;
 color:white;
-background: #fa2d2d
+background: #000000;
 border: 1px solid #000000;
 box-sizing: border-box;
 border-radius: 10px;
