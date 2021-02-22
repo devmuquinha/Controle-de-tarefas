@@ -25,7 +25,6 @@ echo '<label for="integrantes">Escolha os integrantes:</label><br>';
 	}; 
 	echo '<br>';
 }
-//Comentario teste.
 echo'
 	<br><br>
 	<textarea name="tarefa"class="input-tarefa"placeholder="ESCREVA AQUI A TAREFA DOS INTEGRANTES" ></textarea>
