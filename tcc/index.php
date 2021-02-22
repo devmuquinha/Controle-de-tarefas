@@ -19,16 +19,9 @@ echo '
 $select = "select * from tb_integrantes;";
 $result = $conexao->query($select);
 if ($result->num_rows > 0) {
-for ($comboboxes_qtd = 0; $comboboxes_qtd != $result->num_rows; $comboboxes_qtd++)
-{
-echo '
-<label for="integrantes">Escolha um integrante:</label>
-
-<select name="integrante">';
-echo "<option value='Integrante'></option>";
-
+echo '<label for="integrantes">Escolha os integrantes:</label><br>';
 	while ($row = $result->fetch_assoc()) {
-		echo "<option name='integrante " . implode(" ", $row) ."' value='". $row['tb_integrante_nome'] ."'>". $row['tb_integrante_nome']."</option>";
+		echo "<input type='checkbox' id = 'ckbx_" . $row['tb_integrante_nome'] ."'>". $row['tb_integrante_nome']. " <br>";
 	};
 	$result->data_seek(0); 
 	echo '</select><br>';
@@ -41,7 +34,6 @@ echo'
 	</div>
 </form>
 </center>';
-}
 
 
 if(isset($_POST['btn_enviar'])){ 
