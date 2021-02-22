@@ -22,8 +22,9 @@ if ($result->num_rows > 0) {
 echo '<label for="integrantes">Escolha os integrantes:</label><br>';
 	while ($row = $result->fetch_assoc()) {
 		echo "<input type='checkbox' id = 'ckbx_" . $row['tb_integrante_nome'] ."'>". $row['tb_integrante_nome']. " <br>";
-	}; 
-	echo '<br>';
+	};
+	$result->data_seek(0); 
+	echo '</select><br>';
 }
 echo'
 	<br><br>
