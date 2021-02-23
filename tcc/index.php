@@ -41,13 +41,17 @@ if(isset($_POST['btn_enviar'])){
 $integrantes = $_POST['ckbx_integrantes'];
 $nome = $_POST['tarefa_nome'];
 $descricao = $_POST['tarefa_descricao'];
+$selectPegaId = "SELECT tb_tarefa_id FROM tb_tarefas WHERE tb_tarefas.tb_tarefa_nome = '$nome' AND tb_tarefas.tb_tarefa_descricao = '$descricao';";
 try 
 {
+	$insertTarefa = mysqli_query($conexao, "INSERT INTO tb_tarefas (tb_tarefa_nome, tb_tarefa_descricao) VALUES ('$nome', '$descricao');");		
+	$tarefaId = mysqli_query($conexao, $select);
+	$tarefaId = $conexao->query($selectPegaId)->fetch_assoc()['tb_tarefa_id'];
+
 	foreach ($integrantes as $integrante)
 	{
-		echo $integrante . '<br>';
+		$insertGrupo = mysqli_query($conexao, "INSERT INTO tb_grupos (tb_integrante_id, tb_tarefa_id) VALUES ('$integrante', '$tarefaId')");
 	}
-	//$sql = mysqli_query($conexao, "INSERT INTO tb_tarefas (tb_integrante_nome, tb_tarefa_descricao, tb_integrante_id) VALUES ('$nome', '$descricao', '$integrante');");
 	echo "Inserido";
 }
 catch (Exception $err)

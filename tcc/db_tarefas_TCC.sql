@@ -20,7 +20,7 @@ tb_tarefa_id integer not null,
 constraint fk_tarefa_id foreign key(tb_tarefa_id) REFERENCES tb_tarefas(tb_tarefa_id)
 );
 
-/*TESTES*/
+/*TESTES
 insert into tb_integrantes(tb_integrante_nome) value ("Matheus");
 insert into tb_tarefas(tb_tarefa_nome, tb_tarefa_descricao) value ("Criar logo", "Cria assim assado");
 insert into tb_integrantes(tb_integrante_nome) value ("Samuel");
@@ -30,6 +30,8 @@ insert into tb_grupos(tb_integrante_id, tb_tarefa_id) value ("1", "1");
 insert into tb_grupos(tb_integrante_id, tb_tarefa_id) value ("2", "2");
 insert into tb_grupos(tb_integrante_id, tb_tarefa_id) value ("1", "3");
 insert into tb_grupos(tb_integrante_id, tb_tarefa_id) value ("2", "3");
+
+*/
 
 select * from tb_grupos;
 select * from tb_integrantes;
@@ -44,4 +46,3 @@ on tb_integrantes.tb_integrante_id = tb_grupos.tb_integrante_id
 order by tb_tarefas.tb_tarefa_id;
 
 /*drop database db_tarefas_tcc;*/
-/*TESTES*/
