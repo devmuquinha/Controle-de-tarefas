@@ -1,13 +1,15 @@
 <?php
 
-$name="root";
-$pass="root";
-$dbName="db_tarefas_TCC";
+$nome = "root";
+$senha = "root";
+$bancoNome = "db_tarefas_TCC";
 
-$conexao = mysqli_connect("localhost",$name,$pass,$dbName);
+$conexao = mysqli_connect("localhost", $nome, $senha, $bancoNome);
 
-if($conexao){
-}else{
+if ($conexao)
+{
+}
+else{
 	echo "Sem conexão";
 }
 ?>
