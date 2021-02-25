@@ -2,9 +2,10 @@
 <html>
 <head>
 	<title>TCC</title>
-	<link rel="stylesheet" type="text/css" href="estilo.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+<img src="opa.png" width="1300" height="132">
 </body>
 </html>
 <?php
@@ -13,19 +14,18 @@ $tarefa = new Tarefa;
 
 echo '
 <center>
-<h1>Adicionar tarefas TCC</h1>
 <br>
 <form  method="POST">
 	<br><br>
-	<textarea name="tarefa_nome" placeholder="ESCREVA AQUI O NOME DA TAREFA" ></textarea>
+	<input id="inpt" name="tarefa_nome" placeholder="ESCREVA AQUI O NOME DA TAREFA" >
 	<br><br>
-	<textarea name="tarefa_descricao" class="input-tarefa" placeholder="ESCREVA AQUI A TAREFA DOS INTEGRANTES" ></textarea>
+	<textarea id="txtarea" name="tarefa_descricao" class="input-tarefa" placeholder="ESCREVA AQUI A TAREFA DOS INTEGRANTES" ></textarea>
 	<br><br>';
 
 	$tarefa->puxarIntegrantes();
 
 	echo '
-	<input type="submit" name="btn_enviar" class="btn" value="ENVIAR" id="btn_enviar">
+	<input type="submit" id="btn" name="btn_enviar" class="btn" value="ENVIAR" id="btn_enviar">
 	</div>
 	</form>
 	</center>';
