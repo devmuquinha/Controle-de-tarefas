@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="style.css">
 <?php 
     include 'Conexao.php';
 class tarefa{
@@ -6,12 +7,12 @@ class tarefa{
     {
     global $conexao;
 
-    $select = "select * from tb_integrantes;";
+    $select = "select * from tb_integrantes";
 	$result = $conexao->query($select);
         if ($result->num_rows > 0) {
-        echo '<label for="integrantes">Escolha os integrantes:</label><br>';
+        echo '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><label  for="integrantes">Escolha os integrantes:</label><br>';
             while ($row = $result->fetch_assoc()) {
-                echo "<input type='checkbox' name = 'ckbx_integrantes[]' value='" . $row['tb_integrante_id'] ."'>". $row['tb_integrante_nome']. " <br>";
+                echo "<input type='checkbox' id='chb' name = 'ckbx_integrantes[]' value='" . $row['tb_integrante_id'] ."'>". $row['tb_integrante_nome']. " <br>";
             }; 
             echo '<br>';
         }
@@ -47,7 +48,7 @@ class tarefa{
             echo 'Erro - ' . $erro;
         }
 	}
-    echo "Inserido!";
+    echo "<center style='margin-top:150px;'>Inserido!</center>";
     }
 
     function insertTarefa($nome, $descricao)
