@@ -8,15 +8,13 @@ class tarefa{
     global $conexao;
 
     $select = "select * from tb_integrantes";
-	$result = $conexao->query($select);
-        if ($result->num_rows > 0) {
+    $informacao = mysqli_query($conexao, $select);
         echo '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><label for="integrantes">Escolha os integrantes:</label><br>';
-            while ($row = $result->fetch_assoc()) {
-                echo "<input type='checkbox' id='chb' name = 'ckbx_integrantes[]' value='" . $row['tb_integrante_id'] ."'>". $row['tb_integrante_nome']. " <br>";
-            }; 
+        while ($dados = mysqli_fetch_array($informacao)) {
+                echo "<input type='checkbox' id='chb' name = 'ckbx_integrantes[]' value='" . $dados['tb_integrante_id'] ."'>". $dados['tb_integrante_nome']. " <br>";
+            }
             echo '<br>';
         }
-    }   
     
     function puxarTarefas()
     {
@@ -30,13 +28,11 @@ class tarefa{
     on tb_integrantes.tb_integrante_id = tb_grupos.tb_integrante_id
     order by tb_tarefas.tb_tarefa_id;";
 
-	$result = $conexao->query($select);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<label>Nome - </label>" . $row['tb_tarefa_nome'] ." <label >Descrição - </label>". $row['tb_tarefa_nome']. " <label>Integrante - </label>" . $row['tb_integrante_nome'] . "<br><br>";
+    $informacao = mysqli_query($conexao, $select);
+            while ($dados = mysqli_fetch_array($informacao)) {
+                echo "<label>Nome - </label>" . $dados['tb_tarefa_nome'] ." <label >Descrição - </label>". $dados['tb_tarefa_nome']. " <label>Integrante - </label>" . $dados['tb_integrante_nome'] . "<br><br>";
             }; 
             echo '<br>';
-        }
     }   
 
     function pegaIdTarefa($nome, $descricao)
