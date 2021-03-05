@@ -9,7 +9,7 @@
 </body>
 </html>
 <?php
-require_once 'Tarefa.php';
+require_once 'TarefaDAO.php';
 $tarefa = new Tarefa;
 
 echo '
