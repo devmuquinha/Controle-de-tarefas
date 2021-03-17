@@ -7,7 +7,7 @@
     </head>
     <body>
 
-	<section class="header-site" style="background-image:url(a.png);">
+	<section class="header-site" style="background-image:url(img/a.png);">
     <div class="container">
         <div class="row">
             <div class="col">
