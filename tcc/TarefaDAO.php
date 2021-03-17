@@ -1,4 +1,8 @@
-<link rel="stylesheet" type="text/css" href="style.css">
+
+    <link rel="stylesheet" href="css/Bootstrap.min.css">
+        <link rel="stylesheet" href="css/Bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/cs.css">
 <?php 
     include 'Conexao.php';
 class tarefa{
@@ -9,9 +13,11 @@ class tarefa{
 
     $select = "select * from tb_integrantes";
     $informacao = mysqli_query($conexao, $select);
-        echo '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><label for="integrantes">Escolha os integrantes:</label><br>';
+        echo '<br><label for="integrantes">Escolha os integrantes:</label><br>';
         while ($dados = mysqli_fetch_array($informacao)) {
                 echo "<input type='checkbox' id='chb' name = 'ckbx_integrantes[]' value='" . $dados['tb_integrante_id'] ."'>". $dados['tb_integrante_nome']. " <br>";
+
+
             }
             echo '<br>';
         }
@@ -30,7 +36,8 @@ class tarefa{
 
     $informacao = mysqli_query($conexao, $select);
             while ($dados = mysqli_fetch_array($informacao)) {
-                echo "<label>Nome - </label>" . $dados['tb_tarefa_nome'] ." <label >Descrição - </label>". $dados['tb_tarefa_nome']. " <label>Integrante - </label>" . $dados['tb_integrante_nome'] . "<br><br>";
+                echo "<div class='ls' style='background-color:#F8C471; width:900px; margin-left:auto;margin-right:auto;display:black;'><table class='table'><thead><tr><th scope='col'>Tarefa - " . $dados['tb_tarefa_nome'] ."</th><th scope='col' >Descrição - ". $dados['tb_tarefa_descricao']. "</th> <th scope='col'>Integrantes - " . $dados['tb_integrante_nome'] . "</th><tr><thead><table></div><br><br>";
+           
             }; 
             echo '<br>';
     }   
