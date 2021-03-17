@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>TCC</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-<img src="opa.png" width="1300" height="132">
-</body>
+    <head>
+        <title>TCC</title>
+
+        <link rel="stylesheet" type="text/css" href="cs.css">
+    </head>
+    <body>
+
+	<section class="header-site" style="background-image:url(a.png);">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+				<button style="margin-left: auto; margin-right: auto; display: block; width:200px; background-color: rgba(173,255,47, 0.75); color:black" class="btn btn-danger">Cadastro</button>
+           
+            </div>
+        </div>
+    </div>
+</section>
+
+	</body>
 </html>
 <?php
 require_once 'TarefaDAO.php';
@@ -14,18 +27,25 @@ $tarefa = new Tarefa;
 
 echo '
 <center>
-<br>
-<form  method="POST">
-	<br><br>
-	<input id="inpt" name="tarefa_nome" placeholder="ESCREVA AQUI O NOME DA TAREFA" >
-	<br><br>
-	<textarea id="txtarea" name="tarefa_descricao" class="input-tarefa" placeholder="ESCREVA AQUI A TAREFA DOS INTEGRANTES" ></textarea>
-	<br><br>';
+<br><br>
+<h1>TCC do OPA</h1>
+<form method = "POST" > <br>
+    <br>
+        <input  style=" width:300px; padding:5px; border-radius:7px;	margin-left: auto;margin-right: auto; display: block;" name="tarefa_nome" placeholder="Escreva Aqui o Nome da Tarefa">
+            <br>
 
+                    <textarea  style="margin-left: auto;margin-right: auto;display: block; widht:400px; 
+                       
+                        name="tarefa_descricao"
+                        class="input-tarefa"
+                        placeholder="Escreva Aqui a Descriçao da Tarefa "></textarea>
+';
 	$tarefa->puxarIntegrantes();
 
 	echo '
-	<input type="submit" id="btn" name="btn_enviar" class="btn" value="ENVIAR" id="btn_enviar">
+	<button type="button" style="	margin-left: auto;
+	margin-right: auto;
+	display: block; width:300px"  name="btn_enviar" class="btn btn-warning">ENVIAR</button>
 	</div>
 	</form>
 	</center>';
