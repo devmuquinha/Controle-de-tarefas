@@ -1,0 +1,84 @@
+.gp-box{
+	width: 470px;
+	height: 508px;
+	left:400px;
+	border: 1px solid #000000;
+	box-sizing: border-box;
+	}
+	.input-aluno{
+	width: 378px;
+	height: 50px;
+	top:40px;
+	left:50px;
+	font-size:14px;
+	background: #FFFFFF;
+	border: 1px solid #000000;
+	box-sizing: border-box;
+	border-radius: 10px;
+	}
+	.input-tarefa{  
+	width: 300px;
+	height: 259px;
+	top:100px;
+	left:50px;
+	font-size:14px;
+	
+	background: #FFFFFF;
+	border: 1px solid #000000;
+	box-sizing: border-box;
+	border-radius: 10px;
+	}
+	.btn{
+	width: 374px;
+	height: 50px;
+	left: 50px;
+	top: 420px;
+	color:white;
+	background: #000000;
+	border: 1px solid #000000;
+	box-sizing: border-box;
+	border-radius: 10px;
+	}
+	h1{
+		text-align:center;
+		font-family:Arial;
+	}
+	#inpt{
+	position: absolute;
+	width: 400px;
+	height: 60px;
+	left: 470px;
+	top: 200px;
+	
+	background: #FEFFC0;
+	border: 1px solid #000000;
+	box-sizing: border-box;
+	border-radius: 10px;
+	}
+	#txtarea{
+		position: absolute;
+	width: 400px;
+	height: 300px;
+	left: 470px;
+	top: 267px;
+	
+	background: #FEFFC0;
+	border: 1px solid #000000;
+	box-sizing: border-box;
+	border-radius: 10px;
+	}
+	#btn{
+	position: absolute;
+	width: 400px;
+	height: 65px;
+	left: 470px;
+	top: 757px;
+	
+	background: #0D0D0D;
+	border: 1px solid #FFFFFF;
+	box-sizing: border-box;
+	border-radius: 10px;
+	}
+.list{
+	
+}
