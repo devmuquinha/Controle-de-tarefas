@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col">
 
-				<button style=" width:200px; background-color: rgba(173,255,47, 0.75); color:black" class="btn btn-danger">Cadastro</button>
+				<button style="margin-left: auto; margin-right: auto; display: block; width:200px; background-color: rgba(173,255,47, 0.75); color:black" class="btn btn-danger">Cadastro</button>
            
             </div>
         </div>
