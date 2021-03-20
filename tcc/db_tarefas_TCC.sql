@@ -20,10 +20,14 @@ tb_tarefa_id integer not null,
 constraint fk_tarefa_id foreign key(tb_tarefa_id) REFERENCES tb_tarefas(tb_tarefa_id)
 );
 
-/*TESTES
+
 insert into tb_integrantes(tb_integrante_nome) value ("Matheus");
-insert into tb_tarefas(tb_tarefa_nome, tb_tarefa_descricao) value ("Criar logo", "Cria assim assado");
+insert into tb_integrantes(tb_integrante_nome) value ("Renan");
 insert into tb_integrantes(tb_integrante_nome) value ("Samuel");
+insert into tb_integrantes(tb_integrante_nome) value ("José");
+insert into tb_integrantes(tb_integrante_nome) value ("Eduardo");
+/*TESTES;
+insert into tb_tarefas(tb_tarefa_nome, tb_tarefa_descricao) value ("Testa tal coisa", "Testa tall coisa assim");
 insert into tb_tarefas(tb_tarefa_nome, tb_tarefa_descricao) value ("Testa alguma coisa", "Testa assim assim assado");
 insert into tb_tarefas(tb_tarefa_nome, tb_tarefa_descricao) value ("Testa isso", "Testa daquele jeito");
 insert into tb_grupos(tb_integrante_id, tb_tarefa_id) value ("1", "1");

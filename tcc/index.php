@@ -11,9 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-
 				<button style="margin-left: auto; margin-right: auto; display: block; width:200px; background-color: rgba(173,255,47, 0.75); color:black" class="btn btn-danger">Cadastro</button>
-           
             </div>
         </div>
     </div>
@@ -34,18 +32,13 @@ echo '
         <input  style=" width:300px; padding:5px; border-radius:7px;	margin-left: auto;margin-right: auto; display: block;" name="tarefa_nome" placeholder="Escreva Aqui o Nome da Tarefa">
             <br>
 
-                    <textarea  style="margin-left: auto;margin-right: auto;display: block; widht:400px; 
-                       
-                        name="tarefa_descricao"
-                        class="input-tarefa"
-                        placeholder="Escreva Aqui a Descriçao da Tarefa "></textarea>
+            <textarea name="tarefa_descricao" class="input-tarefa" placeholder="ESCREVA AQUI A TAREFA DOS INTEGRANTES" ></textarea>
+            <br><br>
 ';
 	$tarefa->puxarIntegrantes();
 
 	echo '
-	<button type="button" style="	margin-left: auto;
-	margin-right: auto;
-	display: block; width:300px"  name="btn_enviar" class="btn btn-warning">ENVIAR</button>
+	<input type="submit" name="btn_enviar" class="btn" value="ENVIAR" id="btn_enviar">
 	</div>
 	</form>
 	</center>';
