@@ -21,11 +21,6 @@
     padding-top: 300px;
     padding-bottom: 300px;
 }
-
-
-
-
-
 </style>
 
         <section class="header-site" >
@@ -72,14 +67,25 @@ echo '
 	</center>';
 
 if(isset($_POST['btn_enviar'])){ 
-	
+
+try {
+    throw new Exception();
 $integrantes = $_POST['ckbx_integrantes'];
 $nome = $_POST['tarefa_nome'];
 $descricao = $_POST['tarefa_descricao'];
+if ($nome != '' && $descricao != '')
+{
+    $tarefa->insertTarefa($nome, $descricao);		
+    $tarefaId = $tarefa->pegaIdTarefa($nome, $descricao);
+    $tarefa->fazerInsertGrupos($integrantes, $tarefaId);
+}
+else{
+    echo 'Preencha todos os campos!';
+}
+}
+catch (Exception $erro){
+    echo 'Preencha todos os campos!';
 
-
-$tarefa->insertTarefa($nome, $descricao);		
-$tarefaId = $tarefa->pegaIdTarefa($nome, $descricao);
-$tarefa->fazerInsertGrupos($integrantes, $tarefaId);
+}
 }
 ?>
