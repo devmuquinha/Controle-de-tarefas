@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="css/Bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/cs.css">
+<link rel="stylesheet" href="css/div.css">
 <?php
 include 'Conexao.php';
 class tarefa
@@ -33,24 +34,38 @@ class tarefa
         inner join tb_integrantes
         on tb_integrantes.tb_integrante_id = tb_grupos.tb_integrante_id
         order by tb_tarefas.tb_tarefa_id;";
+        
+     
 
         $informacao = mysqli_query($conexao, $select);
         while ($dados = mysqli_fetch_array($informacao)) { //Puxa as tarefas separando por integrantes
             if ($jacomecado == false) {
-                echo "Tarefa - " . $dados['tb_tarefa_nome'] . " <br> Descrição - " . $dados['tb_tarefa_descricao'] . " <br> Integrantes - " . $dados['tb_integrante_nome'];
+             
+                echo "
+                      <th scope='col'> ". $dados['tb_tarefa_nome'] . 
+                     "<th scope='col'>" . $dados['tb_tarefa_descricao'] .
+                     "<th scope='col'>" . $dados['tb_integrante_nome'];
+
                 $nomeTarefa = $dados['tb_tarefa_nome'];
                 $jacomecado = true;
-            } else {
+
+            }else {
+                
                 if ($nomeTarefa == $dados['tb_tarefa_nome']) {
-                    echo ', ' . $dados['tb_integrante_nome'];
+                    echo ", ".$dados['tb_integrante_nome'];
                 } else {
-                    echo '<br><br>';
-                    echo "Tarefa - " . $dados['tb_tarefa_nome'] . " <br> Descrição - " . $dados['tb_tarefa_descricao'] . " <br> Integrantes - " . $dados['tb_integrante_nome'];
-                    $nomeTarefa = $dados['tb_tarefa_nome'];
+             echo "<tr>
+                   <th scope='col'>#</th>
+                   <th scope='col'>" . $dados['tb_tarefa_nome'] . 
+                  "<th scope='col'>" . $dados['tb_tarefa_descricao'] . 
+                  "<th scope='col'>" . $dados['tb_integrante_nome']."<br>";
+                 $nomeTarefa = $dados['tb_tarefa_nome'];
+                 $jacomecado = false;
                 }
             }
         };
-        echo '<br><br><br>';
+
+
     }
 
     function pegaIdTarefa($nome, $descricao)
@@ -76,7 +91,9 @@ class tarefa
                 echo 'Erro - ' . $erro;
             }
         }
-        echo "<center style='margin-top:150px;'>Inserido!</center>";
+        echo "<center style='margin-top:50px; widht:120px;' class='alert alert-info' ><h5 style='margin-left: auto;
+        margin-right: auto; 
+        width:10px;'>Inserido!</h5></center>";
     }
 
     function insertTarefa($nome, $descricao)
@@ -90,3 +107,15 @@ class tarefa
     }
 }
 ?>
+<style>
+#table{
+background-color: lightsalmon;
+margin-left: auto;
+margin-right: auto; 
+width:1366px;
+font-size:18px;
+
+
+}
+
+</style>

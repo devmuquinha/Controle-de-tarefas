@@ -3,21 +3,44 @@
     <head>
         <title>TCC</title>
 
-        <link rel="stylesheet" type="text/css" href="cs.css">
+        <link rel="stylesheet" type="text/css" href="css/cs.css">
+        <link rel="stylesheet" href="css/Bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/div.css">
     </head>
-    <body>
+    <body style="background-color: lightgray;">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/Bootstrap.min.js"></script>
+<style>
+.header-site {
+    background-image: url("img/d.jpg");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: rgb(0, 0, 0);
+    padding-top: 300px;
+    padding-bottom: 300px;
+}
 
-	<section class="header-site" style="background-image:url(img/a.png);">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-				<button style="margin-left: auto; margin-right: auto; display: block; width:200px; background-color: rgba(173,255,47, 0.75); color:black" class="btn btn-danger">Cadastro</button>
+
+
+
+
+</style>
+
+        <section class="header-site" >
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-14">
+                     <a
+    style="float: left;margin-top:120px; display: block; width:200px; background-color: orange; color:Black; border-radius:10px; padding:10px; text-align: center; border:1px;"
+    href="tarefas.php">Opinhaa</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
-
-	</body>
+        </section>
+    </body>
 </html>
 <?php
 require_once 'TarefaDAO.php';
@@ -25,8 +48,10 @@ $tarefa = new Tarefa;
 
 echo '
 <center>
-<br><br>
-<h1>TCC do OPA</h1>
+<div id="frm" >
+
+<br>
+<h2>Form</h2>
 <form method = "POST" > <br>
     <br>
         <input  style=" width:300px; padding:5px; border-radius:7px;	margin-left: auto;margin-right: auto; display: block;" name="tarefa_nome" placeholder="Escreva Aqui o Nome da Tarefa">
@@ -39,8 +64,11 @@ echo '
 
 	echo '
 	<input type="submit" name="btn_enviar" class="btn" value="ENVIAR" id="btn_enviar">
-	</div>
+    <br>
+
+    </div>
 	</form>
+    </div>
 	</center>';
 
 if(isset($_POST['btn_enviar'])){ 

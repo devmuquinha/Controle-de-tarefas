@@ -11,7 +11,21 @@
 <?php
 require_once 'TarefaDAO.php';
 $tarefa = new Tarefa;
+echo "<h1>Tarefas TCC</h1>";
+echo "<table id='table' class='table table-dark'>";
+echo "<thead>
+<tr>
+  <th scope='col'>#</th>
+  <th scope='col'>Tarefa</th>
+  <th scope='col'>Descriçao</th>
+  <th scope='col'>Nome</th>
+</tr>
+</thead>
+<tbody>
+<tr>";
 $tarefa->puxarTarefas();
+
+
 ?>
 </body>
 </html>
