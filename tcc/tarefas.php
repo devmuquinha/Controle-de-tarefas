@@ -16,7 +16,7 @@ echo "<table id='table' class='table table-dark'>";
 echo "<thead>
 <tr>
   <th scope='col'>Tarefa</th>
-  <th scope='col'>Descriçao</th>
+  <th scope='col'>Descrição</th>
   <th scope='col'>Nome</th>
 </tr>
 </thead>
