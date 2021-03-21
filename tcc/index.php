@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>TCC</title>
 
-        <link rel="stylesheet" type="text/css" href="css/cs.css">
-        <link rel="stylesheet" href="css/Bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/div.css">
-    </head>
-    <body style="background-color: lightgray;">
+<head>
+    <title>TCC</title>
+
+    <link rel="stylesheet" type="text/css" href="css/cs.css">
+    <link rel="stylesheet" href="css/Bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/div.css">
+</head>
+
+<body style="background-color: lightgray;">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/Bootstrap.min.js"></script>
-<style>
-.header-site {
-    background-image: url("img/d.jpg");
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    color: rgb(0, 0, 0);
-    padding-top: 300px;
-    padding-bottom: 300px;
-}
-</style>
+    <style>
+        .header-site {
+            background-image: url("img/d.jpg");
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            color: rgb(0, 0, 0);
+            padding-top: 300px;
+            padding-bottom: 300px;
+        }
+    </style>
 
-        <section class="header-site" >
+    <section class="header-site">
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-14">
-                     <a
-    style="float: left;margin-top:120px; display: block; width:200px; background-color: orange; color:Black; border-radius:10px; padding:10px; text-align: center; border:1px;"
-    href="tarefas.php">Opinhaa</a>
-                    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-14">
+                    <a style="float: left;margin-top:120px; display: block; width:200px; background-color: orange; color:Black; border-radius:10px; padding:10px; text-align: center; border:1px;" href="tarefas.php">Opinhaa</a>
                 </div>
             </div>
-        </section>
-    </body>
+        </div>
+    </section>
+</body>
+
 </html>
 <?php
+error_reporting(E_ALL);
 require_once 'TarefaDAO.php';
 $tarefa = new Tarefa;
 
@@ -55,9 +57,9 @@ echo '
             <textarea name="tarefa_descricao" class="input-tarefa" placeholder="ESCREVA AQUI A TAREFA DOS INTEGRANTES" ></textarea>
             <br><br>
 ';
-	$tarefa->puxarIntegrantes();
+$tarefa->puxarIntegrantes();
 
-	echo '
+echo '
 	<input type="submit" name="btn_enviar" class="btn" value="ENVIAR" id="btn_enviar">
     <br>
 
@@ -66,26 +68,17 @@ echo '
     </div>
 	</center>';
 
-if(isset($_POST['btn_enviar'])){ 
-
-try {
-    throw new Exception();
-$integrantes = $_POST['ckbx_integrantes'];
-$nome = $_POST['tarefa_nome'];
-$descricao = $_POST['tarefa_descricao'];
-if ($nome != '' && $descricao != '')
-{
-    $tarefa->insertTarefa($nome, $descricao);		
-    $tarefaId = $tarefa->pegaIdTarefa($nome, $descricao);
-    $tarefa->fazerInsertGrupos($integrantes, $tarefaId);
-}
-else{
-    echo 'Preencha todos os campos!';
-}
-}
-catch (Exception $erro){
-    echo 'Preencha todos os campos!';
-
-}
+if (isset($_POST['btn_enviar'])) {
+        $nome = $_POST['tarefa_nome'];
+        $descricao = $_POST['tarefa_descricao'];
+        
+        if (isset($_POST['ckbx_integrantes']) && $nome != '' && $descricao != '') {
+            $integrantes = $_POST['ckbx_integrantes'];
+            $tarefa->insertTarefa($nome, $descricao);
+            $tarefaId = $tarefa->pegaIdTarefa($nome, $descricao);
+            $tarefa->fazerInsertGrupos($integrantes, $tarefaId);
+        } else {
+            echo 'Preencha todos os campos!';
+        }
 }
 ?>
