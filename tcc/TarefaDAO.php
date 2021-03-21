@@ -16,7 +16,7 @@ class tarefa
         $informacao = mysqli_query($conexao, $select);
         echo '<br><label for="integrantes">Escolha os integrantes:</label><br>';
         while ($dados = mysqli_fetch_array($informacao)) { //Puxa integrantes de dentro do banco
-            echo "<input type='checkbox' id='chb' name = 'ckbx_integrantes[]' value='" . $dados['tb_integrante_id'] . "'>" . $dados['tb_integrante_nome'] . " <br>";
+            echo "<input type='checkbox' id='chb' name = 'ckbx_integrantes[]' value='" . $dados['tb_integrante_id'] . "'> " . $dados['tb_integrante_nome'] . " <br>";
         }
         echo '<br>';
     }
@@ -34,38 +34,30 @@ class tarefa
         inner join tb_integrantes
         on tb_integrantes.tb_integrante_id = tb_grupos.tb_integrante_id
         order by tb_tarefas.tb_tarefa_id;";
-        
-     
 
         $informacao = mysqli_query($conexao, $select);
         while ($dados = mysqli_fetch_array($informacao)) { //Puxa as tarefas separando por integrantes
             if ($jacomecado == false) {
-             
+
                 echo "
-                      <th scope='col'> ". $dados['tb_tarefa_nome'] . 
-                     "<th scope='col'>" . $dados['tb_tarefa_descricao'] .
-                     "<th scope='col'>" . $dados['tb_integrante_nome'];
+                     <th scope='col'>" . $dados['tb_tarefa_nome'] .
+                    "<th scope='col'>" . $dados['tb_tarefa_descricao'] .
+                    "<th scope='col'>" . $dados['tb_integrante_nome'];
 
                 $nomeTarefa = $dados['tb_tarefa_nome'];
                 $jacomecado = true;
-
-            }else {
-                
+            } else {
                 if ($nomeTarefa == $dados['tb_tarefa_nome']) {
-                    echo ", ".$dados['tb_integrante_nome'];
+                    echo ", " . $dados['tb_integrante_nome'];
                 } else {
-             echo "<tr>
-                   <th scope='col'>#</th>
-                   <th scope='col'>" . $dados['tb_tarefa_nome'] . 
-                  "<th scope='col'>" . $dados['tb_tarefa_descricao'] . 
-                  "<th scope='col'>" . $dados['tb_integrante_nome']."<br>";
-                 $nomeTarefa = $dados['tb_tarefa_nome'];
-                 $jacomecado = false;
+                    echo "<tr>
+                         <th scope='col'>" . $dados['tb_tarefa_nome'] .
+                        "<th scope='col'>" . $dados['tb_tarefa_descricao'] .
+                        "<th scope='col'>" . $dados['tb_integrante_nome'];
+                    $nomeTarefa = $dados['tb_tarefa_nome'];
                 }
             }
         };
-
-
     }
 
     function pegaIdTarefa($nome, $descricao)
@@ -73,7 +65,7 @@ class tarefa
         global $conexao;
         try {
             $selectPegaId = "SELECT tb_tarefa_id FROM tb_tarefas WHERE tb_tarefas.tb_tarefa_nome = '$nome' AND tb_tarefas.tb_tarefa_descricao = '$descricao';";
-            mysqli_query($conexao, $selectPegaId); 
+            mysqli_query($conexao, $selectPegaId);
             $tarefaId = $conexao->query($selectPegaId)->fetch_assoc()['tb_tarefa_id'];
             return $tarefaId;
         } catch (Exception $erro) {
@@ -108,14 +100,13 @@ class tarefa
 }
 ?>
 <style>
-#table{
-background-color: lightsalmon;
-margin-left: auto;
-margin-right: auto; 
-width:1366px;
-font-size:18px;
+    #table {
+        background-color: lightsalmon;
+        margin-left: auto;
+        margin-right: auto;
+        width: 1366px;
+        font-size: 18px;
 
 
-}
-
+    }
 </style>
