@@ -26,6 +26,7 @@ class tarefa
         global $conexao;
         $nomeTarefa = '';
         $jacomecado = false;
+        $nomes = '';
 
         $select = "select tb_tarefas.tb_tarefa_id, tb_tarefas.tb_tarefa_nome, tb_tarefas.tb_tarefa_descricao, tb_integrantes.tb_integrante_nome 
         from tb_grupos
@@ -35,29 +36,44 @@ class tarefa
         on tb_integrantes.tb_integrante_id = tb_grupos.tb_integrante_id
         order by tb_tarefas.tb_tarefa_id;";
 
+        $InformacaoidMaximo = mysqli_query($conexao, "SELECT MAX(tb_tarefa_id) FROM tb_tarefas;");
+        $idMaximo = mysqli_fetch_array($InformacaoidMaximo);
         $informacao = mysqli_query($conexao, $select);
+        $idMaximo = $idMaximo[0];
         while ($dados = mysqli_fetch_array($informacao)) { //Puxa as tarefas separando por integrantes
             if ($jacomecado == false) {
-
+                
                 echo "
                      <th scope='col'>" . $dados['tb_tarefa_nome'] .
                     "<th scope='col'>" . $dados['tb_tarefa_descricao'] .
                     "<th scope='col'>" . $dados['tb_integrante_nome'];
-
+                    
+                $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
                 $nomeTarefa = $dados['tb_tarefa_nome'];
                 $jacomecado = true;
             } else {
                 if ($nomeTarefa == $dados['tb_tarefa_nome']) {
                     echo ", " . $dados['tb_integrante_nome'];
+                    $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
                 } else {
+                    if (str_contains($nomes, $_SESSION['login']))
+                    {
+                    echo "<th scope='col'> <input type='checkbox' id='chb' name = 'ckbx_integrantes[]' value='valor'>";
+                    }
+                    $nomes = '';
                     echo "<tr>
                          <th scope='col'>" . $dados['tb_tarefa_nome'] .
                         "<th scope='col'>" . $dados['tb_tarefa_descricao'] .
                         "<th scope='col'>" . $dados['tb_integrante_nome'];
+                    $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
                     $nomeTarefa = $dados['tb_tarefa_nome'];
-                }
+                }$tarefaidd = $dados['tb_tarefa_id'];
             }
         };
+        if (str_contains($nomes, $_SESSION['login']) && $idMaximo == $tarefaidd )
+        {
+        echo "<th scope='col'> <input type='checkbox' id='chb' name = 'ckbx_integrantes[]' value='valor'>";
+        }
     }
 
     function pegaIdTarefa($nome, $descricao)

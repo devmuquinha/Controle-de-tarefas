@@ -78,6 +78,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
 if (isset($_POST['btn_enviar'])) {
         $nome = $_POST['tarefa_nome'];
         $descricao = $_POST['tarefa_descricao'];
+        $nome = mysqli_real_escape_string($conexao, $nome);
+        $descricao = mysqli_real_escape_string($conexao, $descricao);
         
         if (isset($_POST['ckbx_integrantes']) && $nome != '' && $descricao != '') {
             $integrantes = $_POST['ckbx_integrantes'];

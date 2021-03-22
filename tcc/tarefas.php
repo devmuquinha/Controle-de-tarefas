@@ -27,14 +27,15 @@
               <th scope='col'>Tarefa</th>
               <th scope='col'>Descrição</th>
               <th scope='col'>Nome</th>
+              <th scope='col'>Acabado</th>
             </tr>
           </thead>
           <tbody>
             <tr>";
-    echo "</form>";
     $tarefa->puxarTarefas();
   }
 
+  echo "</form>";
   if (isset($_POST['btn_sair'])) {
     $tarefa->deslogar();
   }
