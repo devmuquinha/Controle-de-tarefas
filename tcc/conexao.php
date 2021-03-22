@@ -1,7 +1,7 @@
 <?php
 
 $nome = "root";
-$senha = "root";
+$senha = "";
 $bancoNome = "db_tarefas_TCC";
 
 $conexao = mysqli_connect("localhost", $nome, $senha, $bancoNome);
