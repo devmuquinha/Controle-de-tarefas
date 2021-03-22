@@ -31,7 +31,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr>";
+            <tr>
+          <br><br><input type='submit' name='btnExcluir' id='btnExcluir' value='Excluir'>";
     $tarefa->puxarTarefas();
   }
 
@@ -39,7 +40,19 @@
   if (isset($_POST['btn_sair'])) {
     $tarefa->deslogar();
   }
-
+  
+  if (isset($_POST['btnExcluir'])) {
+    if (isset($_POST['ckbx_tarefas'])) {
+    $tarefas = $_POST['ckbx_tarefas'];
+    foreach ($tarefas as $tarefa) {
+    echo "<br>" .$tarefa;
+    }
+    //$tarefa->excluir($tarefas);
+    }
+    else{
+      echo 'Nenhuma tarefa selecionada!';
+    }
+  }
   ?>
 </body>
 

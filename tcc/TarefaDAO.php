@@ -57,8 +57,8 @@ class tarefa
                     $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
                 } else {
                     if (str_contains($nomes, $_SESSION['login']))
-                    {
-                    echo "<th scope='col'> <input type='checkbox' id='chb' name = 'ckbx_integrantes[]' value='valor'>";
+                    {     
+                        echo "<th scope='col'> <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='" . $dados['tb_tarefa_id'] . "'>";
                     }
                     $nomes = '';
                     echo "<tr>
@@ -72,7 +72,7 @@ class tarefa
         };
         if (str_contains($nomes, $_SESSION['login']) && $idMaximo == $tarefaidd )
         {
-        echo "<th scope='col'> <input type='checkbox' id='chb' name = 'ckbx_integrantes[]' value='valor'>";
+            echo "<th scope='col'> <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='" . $tarefaidd . "'>";
         }
     }
 
@@ -95,13 +95,14 @@ class tarefa
         foreach ($integrantes as $integrante) {
             try {
                 mysqli_query($conexao, "INSERT INTO tb_grupos (tb_integrante_id, tb_tarefa_id) VALUES ('$integrante', '$tarefaId')");
+
+                echo "<center style='margin-top:50px; widht:120px;' class='alert alert-info' ><h5 style='margin-left: auto;
+                margin-right: auto; 
+                width:10px;'>Inserido!</h5></center>";
             } catch (Exception $erro) {
                 echo 'Erro - ' . $erro;
             }
         }
-        echo "<center style='margin-top:50px; widht:120px;' class='alert alert-info' ><h5 style='margin-left: auto;
-        margin-right: auto; 
-        width:10px;'>Inserido!</h5></center>";
     }
 
     function insertTarefa($nome, $descricao)
@@ -113,6 +114,19 @@ class tarefa
             echo "Erro - " . $erro;
         }
     }
+
+    function excluir($tarefas){
+        global $conexao;
+        foreach ($tarefas as $tarefa) {
+            try {
+                mysqli_query($conexao, "UPDATE tb_tarefas SET tb_tarefa_situacao = '1' WHERE tb_tarefa_id = '$tarefa';");
+                
+                echo "Deletado";
+            } catch (Exception $erro) {
+                echo 'Erro - ' . $erro;
+            }
+    }
+}
 
     function fazerLogin($login, $senha)
     {
