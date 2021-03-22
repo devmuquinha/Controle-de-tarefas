@@ -92,10 +92,41 @@ class tarefa
     {
         global $conexao;
         try {
-            mysqli_query($conexao, "INSERT INTO tb_tarefas (tb_tarefa_nome, tb_tarefa_descricao) VALUES ('$nome', '$descricao');");
+            mysqli_query($conexao, "INSERT INTO tb_tarefas (tb_tarefa_nome, tb_tarefa_descricao, tb_tarefa_situacao) VALUES ('$nome', '$descricao', '0');");
         } catch (Exception $erro) {
             echo "Erro - " . $erro;
         }
+    }
+
+    function fazerLogin($login, $senha)
+    {
+        global $conexao;
+        
+        $login = mysqli_real_escape_string($conexao, $login);
+        $senha = mysqli_real_escape_string($conexao, $senha);
+        $selectLogin =  "SELECT * FROM tb_integrantes WHERE tb_integrantes.tb_integrante_nome = '$login' AND tb_integrantes.tb_integrante_senha = '$senha';";
+        
+        $resultado = mysqli_query($conexao, $selectLogin);
+        if ($resultado->num_rows > 0) {
+            $_SESSION['login'] = $login;
+            $_SESSION['senha'] = $senha;
+            //FAZER O QUE QUISER AQUI 
+            header('location:index.php');
+            $_SESSION["loggedin"] = true;
+            $_SESSION["login"] = $login;
+        } else {
+            echo 'Login não encontrado :(';
+        }
+    }
+
+    function deslogar()
+    {
+        echo 'start';
+        session_start();
+        $_SESSION = array();
+        session_destroy();
+        header("location: login.php");
+        exit;
     }
 }
 ?>

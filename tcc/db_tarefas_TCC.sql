@@ -3,13 +3,15 @@ use db_tarefas_TCC;
 
 create table tb_integrantes(
 tb_integrante_id integer not null auto_increment primary key,
-tb_integrante_nome varchar(100)not null
+tb_integrante_nome varchar(100) not null,
+tb_integrante_senha varchar(100) not null
 );
  
 create table tb_tarefas(
 tb_tarefa_id integer not null auto_increment primary key,
 tb_tarefa_nome varchar(64)not null,
-tb_tarefa_descricao varchar(128)not null
+tb_tarefa_descricao varchar(128)not null,
+tb_tarefa_situacao int(2)not null
 );
 
 create table tb_grupos(
@@ -21,11 +23,12 @@ constraint fk_tarefa_id foreign key(tb_tarefa_id) REFERENCES tb_tarefas(tb_taref
 );
 
 
-insert into tb_integrantes(tb_integrante_nome) value ("Matheus");
-insert into tb_integrantes(tb_integrante_nome) value ("Renan");
-insert into tb_integrantes(tb_integrante_nome) value ("Samuel");
-insert into tb_integrantes(tb_integrante_nome) value ("José");
-insert into tb_integrantes(tb_integrante_nome) value ("Eduardo");
+insert into tb_integrantes(tb_integrante_nome, tb_integrante_senha) values ("Matheus", "123456");
+insert into tb_integrantes(tb_integrante_nome, tb_integrante_senha) values ("Renan", "123456");
+insert into tb_integrantes(tb_integrante_nome, tb_integrante_senha) values ("Samuel", "123456");
+insert into tb_integrantes(tb_integrante_nome, tb_integrante_senha) values ("José", "123456");
+insert into tb_integrantes(tb_integrante_nome, tb_integrante_senha) values ("Eduardo", "123456");
+
 /*TESTES;
 insert into tb_tarefas(tb_tarefa_nome, tb_tarefa_descricao) value ("Testa tal coisa", "Testa tall coisa assim");
 insert into tb_tarefas(tb_tarefa_nome, tb_tarefa_descricao) value ("Testa alguma coisa", "Testa assim assim assado");
@@ -34,7 +37,7 @@ insert into tb_grupos(tb_integrante_id, tb_tarefa_id) value ("1", "1");
 insert into tb_grupos(tb_integrante_id, tb_tarefa_id) value ("2", "2");
 insert into tb_grupos(tb_integrante_id, tb_tarefa_id) value ("1", "3");
 insert into tb_grupos(tb_integrante_id, tb_tarefa_id) value ("2", "3");
-
+SELECT * FROM tb_integrantes WHERE tb_integrantes.tb_integrante_nome = 'Matheus' AND tb_integrantes.tb_integrante_senha = ''or 1=1#';
 */
 
 select * from tb_grupos;
