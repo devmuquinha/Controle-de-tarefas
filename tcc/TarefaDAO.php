@@ -16,7 +16,16 @@ class tarefa
         $informacao = mysqli_query($conexao, $select);
         echo '<br><label for="integrantes">Escolha os integrantes:</label><br>';
         while ($dados = mysqli_fetch_array($informacao)) { //Puxa integrantes de dentro do banco
-            echo "<input type='checkbox' id='chb' name = 'ckbx_integrantes[]' value='" . $dados['tb_integrante_id'] . "'> " . $dados['tb_integrante_nome'] . " <br>";
+            echo "<table border='1' style='width:200px;'>
+            <thead style='width:50px;'>
+                <tr style='text-align:center;'>
+                  <th style='width:10px' ><input type='checkbox' id='chb' name = 'ckbx_integrantes[]' value='" . $dados['tb_integrante_id'] . "'> </th>
+                  <th >" .$dados['tb_integrante_nome']."</th>
+                </tr>
+               <tr>
+            </thead>
+            </tbody>
+          </table> ";
         }
         echo '<br>';
     }
