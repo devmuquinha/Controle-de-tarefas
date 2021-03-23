@@ -154,7 +154,7 @@ class tarefa
             $_SESSION["loggedin"] = true;
             $_SESSION["login"] = $login;
         } else {
-            echo 'Login não encontrado :(';
+            echo '<div class="log"><label style="margin-top:5px;">Login não encontrado</label></div>';
         }
     }
 
