@@ -3,16 +3,14 @@
     margin-left: auto;
     margin-right: auto;
     display: block;
-    width: 700px;
-    height: 400px;
-    margin-top: 100px;
-    border-radius: 30px;
+    width: 250px;
+    height:250px;
 }
 .box-lado {
     background-color: white;
-    width: 400px;
-    float: right;
-    height: 400px;
+    width: 250px;
+    height:340px;
+    font-size: 13px;
     border-radius: 30px;
 }
 .body {
@@ -31,9 +29,11 @@ input {
     color: white;
 }
 #bb{
-    float: left;
-    margin-left: 50px;
-    margin-top: 150px;
+    margin-left:65px;
+    margin-right: auto;
+    margin-top: 20px;
+    font-size: 26px;
+
 
 }
 .button {
@@ -54,6 +54,8 @@ input {
     display: inline-block;
     border: 1px solid #000000;
     background-color: silver;
+    visibility: hidden;
+    display: none;
 
 }
 .saiba_bt:hover {
@@ -86,10 +88,8 @@ input {
 }
 .log{
     background-color:rgba(255, 0, 0, 0.35) ;
-    margin-left:auto;
-    margin-right: auto;
+    width:220px;
     display: block;
-    width:600px;
     text-align: center;
     margin-top:20px;
     border: 1px solid #000000;
