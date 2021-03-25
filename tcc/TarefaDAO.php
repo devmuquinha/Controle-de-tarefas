@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="css/Bootstrap.min.css">
 <link rel="stylesheet" href="css/Bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="sty.css">
 <link rel="stylesheet" href="css/cs.css">
 <link rel="stylesheet" href="css/div.css">
 <?php
@@ -154,7 +155,7 @@ class tarefa
             $_SESSION["loggedin"] = true;
             $_SESSION["login"] = $login;
         } else {
-            echo '<div class="log"><label style="margin-top:5px;">Login não encontrado</label></div>';
+            echo '<br><div style="margin-top:50px;" class="log"><label style="margin-top:5px;">Login não encontrado</label></div>';
         }
     }
 
