@@ -20,7 +20,7 @@ class tarefa
             <thead style='width:50px;'>
                 <tr style='text-align:center;'>
                   <th style='width:10px' ><input type='checkbox' id='chb' name = 'ckbx_integrantes[]' value='" . $dados['tb_integrante_id'] . "'> </th>
-                  <th >" .$dados['tb_integrante_nome']."</th>
+                  <th >" . $dados['tb_integrante_nome'] . "</th>
                 </tr>
                <tr>
             </thead>
@@ -34,10 +34,10 @@ class tarefa
     {
         global $conexao;
         $nomeTarefa = '';
-        $jacomecado = false;
         $nomes = '';
+        $tarefaId = '';
 
-        $select = "select tb_tarefas.tb_tarefa_id, tb_tarefas.tb_tarefa_nome, tb_tarefas.tb_tarefa_descricao, tb_integrantes.tb_integrante_nome 
+        $select = "select tb_tarefas.tb_tarefa_id, tb_tarefas.tb_tarefa_nome, tb_tarefas.tb_tarefa_descricao, tb_integrantes.tb_integrante_nome, tb_tarefas.tb_tarefa_situacao
         from tb_grupos
         inner join tb_tarefas
         on tb_grupos.tb_tarefa_id = tb_tarefas.tb_tarefa_id
@@ -47,41 +47,38 @@ class tarefa
 
         $InformacaoidMaximo = mysqli_query($conexao, "SELECT MAX(tb_tarefa_id) FROM tb_tarefas;");
         $idMaximo = mysqli_fetch_array($InformacaoidMaximo);
-        $informacao = mysqli_query($conexao, $select);
         $idMaximo = $idMaximo[0];
+        $informacao = mysqli_query($conexao, $select);
         while ($dados = mysqli_fetch_array($informacao)) { //Puxa as tarefas separando por integrantes
-            if ($jacomecado == false) {
-                
-                echo "
-                     <th scope='col'>" . $dados['tb_tarefa_nome'] .
-                    "<th scope='col'>" . $dados['tb_tarefa_descricao'] .
-                    "<th scope='col'>" . $dados['tb_integrante_nome'];
-                    
-                $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
-                $nomeTarefa = $dados['tb_tarefa_nome'];
-                $jacomecado = true;
-            } else {
-                if ($nomeTarefa == $dados['tb_tarefa_nome']) {
-                    echo ", " . $dados['tb_integrante_nome'];
-                    $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
-                } else {
-                    if (str_contains($nomes, $_SESSION['login']))
-                    {     
-                        echo "<th scope='col'> <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='" . $dados['tb_tarefa_id'] . "'>";
-                    }
+
+            if ($dados['tb_tarefa_situacao'] == '0') {
+                if (str_contains($nomes, $_SESSION['login']) && $nomeTarefa != $dados['tb_tarefa_nome']) {
+                    echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'>";
+                }
+
+                if ($nomeTarefa != $dados['tb_tarefa_nome']) {
+                    echo '<br> <br>';
+
+                    echo "
+                    Nome - " .           $dados['tb_tarefa_nome'] .
+                        "<br> Descrição - " . $dados['tb_tarefa_descricao'] .
+                        "<br> Nome Tarefa - " . $dados['tb_integrante_nome'];
+
                     $nomes = '';
-                    echo "<tr>
-                         <th scope='col'>" . $dados['tb_tarefa_nome'] .
-                        "<th scope='col'>" . $dados['tb_tarefa_descricao'] .
-                        "<th scope='col'>" . $dados['tb_integrante_nome'];
                     $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
                     $nomeTarefa = $dados['tb_tarefa_nome'];
-                }$tarefaidd = $dados['tb_tarefa_id'];
+                } else {
+                    echo ", " . $dados['tb_integrante_nome'];
+                    $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
+                }
+                $tarefaId = $dados['tb_tarefa_id'];
+            } else {
             }
         };
-        if (str_contains($nomes, $_SESSION['login']) && $idMaximo == $tarefaidd )
-        {
-            echo "<th scope='col'> <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='" . $tarefaidd . "'>";
+
+
+        if (str_contains($nomes, $_SESSION['login'])) {
+            echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'>";
         }
     }
 
@@ -101,18 +98,21 @@ class tarefa
     function fazerInsertGrupos($integrantes, $tarefaId)
     {
         global $conexao;
-        foreach ($integrantes as $integrante) {
-            try {
-                mysqli_query($conexao, "INSERT INTO tb_grupos (tb_integrante_id, tb_tarefa_id) VALUES ('$integrante', '$tarefaId')");
-
-                echo "<center style='margin-top:50px; widht:120px;' class='alert alert-info' ><h5 style='margin-left: auto;
-                margin-right: auto; 
-                width:10px;'>Inserido!</h5></center>";
-            } catch (Exception $erro) {
-                echo 'Erro - ' . $erro;
+        try {
+            foreach ($integrantes as $integrante) {
+                try {
+                    mysqli_query($conexao, "INSERT INTO tb_grupos (tb_integrante_id, tb_tarefa_id) VALUES ('$integrante', '$tarefaId')");
+                } catch (Exception $erro) {
+                    echo 'Erro - ' . $erro;
+                }
             }
+            echo "<center style='margin-top:50px; widht:120px;' class='alert alert-info' ><h5 style='margin-left: auto;
+            margin-right: auto; 
+            width:10px;'>Inserido!</h5></center>";
+        } catch (Exception $e) {
         }
     }
+
 
     function insertTarefa($nome, $descricao)
     {
@@ -124,27 +124,27 @@ class tarefa
         }
     }
 
-    function excluir($tarefas){
+    function excluir($tarefas)
+    {
         global $conexao;
         foreach ($tarefas as $tarefa) {
             try {
                 mysqli_query($conexao, "UPDATE tb_tarefas SET tb_tarefa_situacao = '1' WHERE tb_tarefa_id = '$tarefa';");
-                
                 echo "Deletado";
             } catch (Exception $erro) {
                 echo 'Erro - ' . $erro;
             }
+        }
     }
-}
 
     function fazerLogin($login, $senha)
     {
         global $conexao;
-        
-        $login = mysqli_real_escape_string($conexao,$login);
-        $senha = mysqli_real_escape_string($conexao,md5($senha));
+
+        $login = mysqli_real_escape_string($conexao, $login);
+        $senha = mysqli_real_escape_string($conexao, $senha); //$senha = mysqli_real_escape_string($conexao,md5($senha));
         $selectLogin =  "SELECT * FROM tb_integrantes WHERE tb_integrantes.tb_integrante_nome = '$login' AND tb_integrantes.tb_integrante_senha = '$senha';";
-        
+
         $resultado = mysqli_query($conexao, $selectLogin);
         if ($resultado->num_rows > 0) {
             $_SESSION['login'] = $login;
