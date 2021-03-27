@@ -66,15 +66,16 @@ class tarefa
                         "<br> Nome Tarefa - " . $dados['tb_integrante_nome'];
 
                     $nomes = '';
-                    $nomes = $nomes . ' ' . $dados['tb_integrante_id'];
+                    $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
                     $idTarefa = $dados['tb_tarefa_id'];
                 } else {
                     echo ", " . $dados['tb_integrante_nome'];
-                    $nomes = $nomes . ' ' . $dados['tb_integrante_id'];
+                    $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
                 }
                 $tarefaId = $dados['tb_tarefa_id'];
             } else {
             }
+
         };
 
         if (str_contains($nomes, $_SESSION['login'])) {
