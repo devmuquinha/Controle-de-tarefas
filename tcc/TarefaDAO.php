@@ -34,11 +34,11 @@ class tarefa
     function puxarTarefas()
     {
         global $conexao;
-        $nomeTarefa = '';
+        $idTarefa = '';
         $nomes = '';
         $tarefaId = '';
 
-        $select = "select tb_tarefas.tb_tarefa_id, tb_tarefas.tb_tarefa_nome, tb_tarefas.tb_tarefa_descricao, tb_integrantes.tb_integrante_nome, tb_tarefas.tb_tarefa_situacao
+        $select = "select tb_tarefas.tb_tarefa_id, tb_tarefas.tb_tarefa_nome, tb_tarefas.tb_tarefa_descricao, tb_integrantes.tb_integrante_nome, tb_tarefas.tb_tarefa_situacao, tb_grupos.tb_integrante_id
         from tb_grupos
         inner join tb_tarefas
         on tb_grupos.tb_tarefa_id = tb_tarefas.tb_tarefa_id
@@ -53,43 +53,44 @@ class tarefa
         while ($dados = mysqli_fetch_array($informacao)) { //Puxa as tarefas separando por integrantes
 
             if ($dados['tb_tarefa_situacao'] == '0') {
-                if (str_contains($nomes, $_SESSION['login']) && $nomeTarefa != $dados['tb_tarefa_nome']) {
+                if (str_contains($nomes, $_SESSION['login']) && $idTarefa != $dados['tb_tarefa_id']) {
                     echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'>";
                 }
 
-                if ($nomeTarefa != $dados['tb_tarefa_nome']) {
+                if ($idTarefa != $dados['tb_tarefa_id']) {
                     echo '<br> <br>';
 
                     echo "
-                    Nome - " .           $dados['tb_tarefa_nome'] .
-                        "<br> Descrição - " . $dados['tb_tarefa_descricao'] .
+                              Nome - " .        $dados['tb_tarefa_nome'] .
+                        "<br> Descrição - " .   $dados['tb_tarefa_descricao'] .
                         "<br> Nome Tarefa - " . $dados['tb_integrante_nome'];
 
                     $nomes = '';
-                    $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
-                    $nomeTarefa = $dados['tb_tarefa_nome'];
+                    $nomes = $nomes . ' ' . $dados['tb_integrante_id'];
+                    $idTarefa = $dados['tb_tarefa_id'];
                 } else {
                     echo ", " . $dados['tb_integrante_nome'];
-                    $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
+                    $nomes = $nomes . ' ' . $dados['tb_integrante_id'];
                 }
                 $tarefaId = $dados['tb_tarefa_id'];
             } else {
             }
         };
 
-
         if (str_contains($nomes, $_SESSION['login'])) {
             echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'>";
         }
     }
 
-    function pegaIdTarefa($nome, $descricao)
+    function pegaIdTarefa()
     {
         global $conexao;
         try {
-            $selectPegaId = "SELECT tb_tarefa_id FROM tb_tarefas WHERE tb_tarefas.tb_tarefa_nome = '$nome' AND tb_tarefas.tb_tarefa_descricao = '$descricao';";
-            mysqli_query($conexao, $selectPegaId);
-            $tarefaId = $conexao->query($selectPegaId)->fetch_assoc()['tb_tarefa_id'];
+            $selectPegaId = "SELECT MAX(tb_tarefa_id) FROM tb_tarefas;";
+
+            $informacao = mysqli_query($conexao, $selectPegaId);
+            $dado = mysqli_fetch_array($informacao);
+            $tarefaId = $dado[0];
             return $tarefaId;
         } catch (Exception $erro) {
             return $erro;

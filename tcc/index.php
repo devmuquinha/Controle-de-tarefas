@@ -84,7 +84,7 @@ if (isset($_POST['btn_enviar'])) {
         if (isset($_POST['ckbx_integrantes']) && $nome != '' && $descricao != '') {
             $integrantes = $_POST['ckbx_integrantes'];
             $tarefa->insertTarefa($nome, $descricao);
-            $tarefaId = $tarefa->pegaIdTarefa($nome, $descricao);
+            $tarefaId = $tarefa->pegaIdTarefa();
             $tarefa->fazerInsertGrupos($integrantes, $tarefaId);
         } else {
             echo 'Preencha todos os campos!';

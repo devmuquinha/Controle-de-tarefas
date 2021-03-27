@@ -24,8 +24,6 @@
     echo "</form>";
   }
 
-
-
   if (isset($_POST['btn_sair'])) {
     $tarefa->deslogar();
   }
