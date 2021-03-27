@@ -144,7 +144,7 @@ class tarefa
         global $conexao;
 
         $login = mysqli_real_escape_string($conexao, $login);
-        $senha = mysqli_real_escape_string($conexao, $senha); //$senha = mysqli_real_escape_string($conexao,md5($senha));
+        $senha = mysqli_real_escape_string($conexao,md5($senha));
         $selectLogin =  "SELECT * FROM tb_integrantes WHERE tb_integrantes.tb_integrante_nome = '$login' AND tb_integrantes.tb_integrante_senha = '$senha';";
 
         $resultado = mysqli_query($conexao, $selectLogin);
