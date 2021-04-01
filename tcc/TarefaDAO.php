@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="css/Bootstrap.min.css">
 
 <?php
 include 'Conexao.php';
@@ -11,7 +10,7 @@ class tarefa
 
         $select = "select * from tb_integrantes";
         $informacao = mysqli_query($conexao, $select);
-        echo '<br><label for="integrantes" class="escolha">Escolha os integrantes:</label><br>';
+        echo '<label for="integrantes" class="escolha">Escolha os integrantes:</label><br>';
         while ($dados = mysqli_fetch_array($informacao)) { //Puxa integrantes de dentro do banco
             echo "<table class='tab' border='1'>
             <thead class='thead' >
@@ -54,10 +53,9 @@ class tarefa
                 }
 
                 if ($idTarefa != $dados['tb_tarefa_id']) {
-                    echo '<br> <br>';
 
                     echo "
-                              Nome - " .        $dados['tb_tarefa_nome'] .
+                         <br> Nome - " .        $dados['tb_tarefa_nome'] .
                         "<br> Descrição - " .   $dados['tb_tarefa_descricao'] .
                         "<br> Nome Tarefa - " . $dados['tb_integrante_nome'];
 
