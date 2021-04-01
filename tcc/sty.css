@@ -95,3 +95,15 @@ input {
     border: 1px solid #000000;
     box-sizing: border-box;
 }
+.header{
+    background-image: url("img/d.jpg");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: rgb(0, 0, 0);
+    padding-top: 300px;
+    padding-bottom: 300px;
+}
+
+

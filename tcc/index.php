@@ -1,44 +1,18 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>TCC</title>
-
-    <link rel="stylesheet" type="text/css" href="css/cs.css">
-    <link rel="stylesheet" href="css/Bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/div.css">
+    <link rel="stylesheet"   href="sty.css">
+    <link rel="stylesheet"   href="css/bootstrap.min.css">
+    <link rel="stylesheet"   media="screen and (max-width: 900px)" href="wide.css">
+    <link rel="stylesheet"   media="screen and (min-width: 600px)" href="small.css">
 </head>
-
-<body style="background-color: lightgray;">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="js/Bootstrap.min.js"></script>
-    <style>
-        .header-site {
-            background-image: url("img/d.jpg");
-            background-position: center top;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            color: rgb(0, 0, 0);
-            padding-top: 300px;
-            padding-bottom: 300px;
-        }
-    </style>
-
-    <section class="header-site">
-
+<body>
+    <section class="header">
         <div class="container">
             <div class="row">
                 <div class="col-14">
-                    <a style="float: left;margin-top:120px; display: block; width:200px; background-color: orange; color:Black; border-radius:10px; padding:10px; text-align: center; border:1px;" href="tarefas.php">Opinhaa</a>
-                </div>
-            </div>
-        </div>
-    </section>
-</body>
-
-</html>
-<?php
+                <?php
 error_reporting(E_ALL);
 session_start();
 require_once 'TarefaDAO.php';
@@ -47,18 +21,17 @@ $tarefa = new Tarefa;
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION['login'] != 'Eduardo') {
     header("location: tarefas.php");
     exit;
-  } else {echo '
+  } else {
+    echo '
     <center>
-    <div id="frm" >
-    
+    <div class="forms" >    
     <br>
-    <h2>Form</h2>
+
     <form method = "POST" > <br>
         <br>
-            <input  style=" width:300px; padding:5px; border-radius:7px;	margin-left: auto;margin-right: auto; display: block;" name="tarefa_nome" placeholder="Escreva Aqui o Nome da Tarefa">
+            <input class="titulo-tarefa" name="tarefa_nome" placeholder="Titulo da Tarefa">
                 <br>
-    
-                <textarea name="tarefa_descricao" class="input-tarefa" placeholder="ESCREVA AQUI A TAREFA DOS INTEGRANTES" ></textarea>
+                <textarea name="tarefa_descricao" class="desc-tarefa" placeholder="Descriçao da Tarefa" ></textarea>
                 <br><br>
     ';
     $tarefa->puxarIntegrantes();
@@ -66,14 +39,44 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
     echo '
         <input type="submit" name="btn_enviar" class="btn" value="ENVIAR" id="btn_enviar">
         <br>
-    
-        </div>
+        <br>
         </form>
         </div>
+
         </center>';
   }
+?>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+   
+    <br>
+    <br>
+    <br>
+        <br>
+        <br>
+        <br>    <br>
+        <br>
+        <br>
+        <br>    <br>
+        <br>
+        <br>
+        <br>    <br>
+        <br>
+        <br>
+        <br>    <br>
+        <br>
+        <br>
+        <br>
+      
+</body>
+
+</html>
 
 
+<?php
 
 if (isset($_POST['btn_enviar'])) {
         $nome = $_POST['tarefa_nome'];
@@ -87,7 +90,7 @@ if (isset($_POST['btn_enviar'])) {
             $tarefaId = $tarefa->pegaIdTarefa();
             $tarefa->fazerInsertGrupos($integrantes, $tarefaId);
         } else {
-            echo 'Preencha todos os campos!';
+            echo '<br><div class="log"><label >Preencha todos os campos!</label ></div>';
         }
 }
 ?>

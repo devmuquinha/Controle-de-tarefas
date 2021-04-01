@@ -4,16 +4,16 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="stylesheet" href="sty.css">
-         <link
-            rel="stylesheet"   media="screen and (min-width: 900px)"href="widescreen.css">
-        <link rel="stylesheet" media="screen and (max-width: 600px)" href="smallscreen.css">
+         <link rel="stylesheet" media="screen and (max-width: 600px)" href="smallscreen.css"> 
+         <link rel="stylesheet"   media="screen and (min-width: 900px)"href="widescreen.css">
+        
         <meta name="viewport"  content="width=device-width, initial-scale=1.0">
         <title>Login</title>
     </head>
     <body class="body">
         <center>
             <div class="form-box">
-                <h2 id="bb" style="color:white;">Bem Vindo</h2>
+                <h2 class="faça-log">Faça Login!</h2>
                 <div class="box-lado">
                     <form method="post">
                         <h1 class="h1">Login</h1><br><br>
@@ -26,7 +26,7 @@
                 <!--<label class="label" >FAÇA LOGIN PARA<br> VER AS TAREFAS</label> -->
             </div>
         </center>
-        <br><br><br><br><br><br>
+
 <?php
     require_once 'TarefaDAO.php';
     $tarefa = new Tarefa;

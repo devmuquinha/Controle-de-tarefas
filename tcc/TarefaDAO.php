@@ -1,9 +1,5 @@
 <link rel="stylesheet" href="css/Bootstrap.min.css">
-<link rel="stylesheet" href="css/Bootstrap.min.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="sty.css">
-<link rel="stylesheet" href="css/cs.css">
-<link rel="stylesheet" href="css/div.css">
+
 <?php
 include 'Conexao.php';
 class tarefa
@@ -15,13 +11,13 @@ class tarefa
 
         $select = "select * from tb_integrantes";
         $informacao = mysqli_query($conexao, $select);
-        echo '<br><label for="integrantes">Escolha os integrantes:</label><br>';
+        echo '<br><label for="integrantes" class="escolha">Escolha os integrantes:</label><br>';
         while ($dados = mysqli_fetch_array($informacao)) { //Puxa integrantes de dentro do banco
-            echo "<table border='1' style='width:200px;'>
-            <thead style='width:50px;'>
-                <tr style='text-align:center;'>
-                  <th style='width:10px' ><input type='checkbox' id='chb' name = 'ckbx_integrantes[]' value='" . $dados['tb_integrante_id'] . "'> </th>
-                  <th >" . $dados['tb_integrante_nome'] . "</th>
+            echo "<table class='tab' border='1'>
+            <thead class='thead' >
+                <tr class='tr'>
+                  <th ><input type='checkbox' class='chb' name = 'ckbx_integrantes[]' value='" . $dados['tb_integrante_id'] . "'> </th>
+                  <th class='nome' >" . $dados['tb_integrante_nome'] . "</th>
                 </tr>
                <tr>
             </thead>
@@ -145,7 +141,7 @@ class tarefa
         global $conexao;
 
         $login = mysqli_real_escape_string($conexao, $login);
-        $senha = mysqli_real_escape_string($conexao,md5($senha));
+        $senha = mysqli_real_escape_string($conexao,$senha);
         $selectLogin =  "SELECT * FROM tb_integrantes WHERE tb_integrantes.tb_integrante_nome = '$login' AND tb_integrantes.tb_integrante_senha = '$senha';";
 
         $resultado = mysqli_query($conexao, $selectLogin);
@@ -157,7 +153,7 @@ class tarefa
             $_SESSION["loggedin"] = true;
             $_SESSION["login"] = $login;
         } else {
-            echo '<br><div style="margin-top:50px;" class="log"><label style="margin-top:5px;">Login não encontrado</label></div>';
+            echo '<div class="log"><label style="margin-top:5px;">Login não encontrado</label></div>';
         }
     }
 
@@ -172,14 +168,3 @@ class tarefa
     }
 }
 ?>
-<style>
-    #table {
-        background-color: lightsalmon;
-        margin-left: auto;
-        margin-right: auto;
-        width: 1366px;
-        font-size: 18px;
-
-
-    }
-</style>
