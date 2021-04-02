@@ -1,13 +1,10 @@
-
 <?php
 include 'Conexao.php';
 class tarefa
 {
-
     function puxarIntegrantes()
     {
         global $conexao;
-
         $select = "select * from tb_integrantes";
         $informacao = mysqli_query($conexao, $select);
         echo '<label for="integrantes" class="escolha">Escolha os integrantes:</label><br>';
@@ -25,7 +22,6 @@ class tarefa
         }
         echo '<br>';
     }
-
     function puxarTarefas()
     {
         global $conexao;
@@ -151,7 +147,7 @@ class tarefa
             $_SESSION["loggedin"] = true;
             $_SESSION["login"] = $login;
         } else {
-            echo '<div class="log"><label style="margin-top:5px;">Login não encontrado</label></div>';
+            echo '<div class="login"><label style="margin-top:5px;">Login não encontrado</label></div>';
         }
     }
 

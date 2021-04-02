@@ -5,61 +5,57 @@
     display: block;
     background-color: White;
     width: 800px;
-    height:1110px;
-    border-radius:20px;
-    margin-top:200px;
+    height: 900px;
+
     margin-bottom: 20px;
 }
 .tab {
     width: 600px;
-    background-color: gray;
+
 }
 .thead {
     width: 50px;
 }
 
 .nome {
-    font-size:32px;
+    font-size: 32px;
     text-align: center;
     width: 700px;
-    color: rgb(255, 255, 255);
 }
 .chb {
     height: 20px;
-    margin-left:20px;
+    margin-left: 20px;
 
 }
-.body{
+.body {
     background-color: #ff8c00;
 }
-.desc-tarefa{
-    width:600px;
-    height:400px;
+.desc-tarefa {
+    width: 600px;
+    height: 400px;
     outline: none;
-    font-size:38px;
+    font-size: 38px;
     border-radius: 10px;
     outline: none;
 }
-.btn{
+.btn {
 
-    width:600px;
-    height:60px;
+    width: 600px;
+    height: 60px;
     background-color: #ff8c00;
 }
-.titulo-tarefa{
-    width:600px;
-    height:100px;
+.titulo-tarefa {
+    width: 600px;
+    height: 100px;
     outline: none;
-    font-size:38px;
+    font-size: 38px;
     border-radius: 10px;
 
 }
-.log{
+.log {
     background-color: rgba(255, 0, 0, 0.693);
-    border-radius: 0px 0px 20px 20px;
+    border-radius: 0 0 20px 20px;
     color: white;
-    height:60px;
+    height: 60px;
     font-size: 32px;
 }
-
-

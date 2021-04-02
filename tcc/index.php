@@ -4,18 +4,14 @@
         <title>TCC</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="estilo.css">
-        <link rel="stylesheet"   media="screen and (min-width: 600px)" href="sma.css"> 
-        <link rel="stylesheet"   media="screen and (min-width: 1366px)" href="wid.css">
-
-
+        <link rel="stylesheet" media="screen and (min-width: 600px)" href="wid.css">
     </head>
-<body class="body">
-                <?php
+    <body class="body">
+    <?php
 error_reporting(E_ALL);
 session_start();
 require_once 'TarefaDAO.php';
 $tarefa = new Tarefa;
-
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION['login'] != 'Eduardo') {
     header("location: tarefas.php");
     exit;
@@ -23,14 +19,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
     echo '
     <center>
     <div class="forms" >    
-    <br>
-
     <form method = "POST" > <br>
         <br>
             <input class="titulo-tarefa" name="tarefa_nome" placeholder="Titulo da Tarefa">
                 <br>
                 <textarea name="tarefa_descricao" class="desc-tarefa" placeholder="Descriçao da Tarefa" ></textarea>
-                <br><br>
+                <br>
+                <br>
     ';
     $tarefa->puxarIntegrantes();
     
@@ -55,17 +50,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
                 echo '<div class="log"><label >Preencha todos os campos!</label ></div>';
             }
     }
-
-
         echo'
         </div>
-
         </center>';
   }
 ?>
-          
-
-
-</body>
-
+    </body>
 </html>

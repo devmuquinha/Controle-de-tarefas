@@ -4,18 +4,22 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="stylesheet" href="sty.css">
-         <link rel="stylesheet" media="screen and (max-width: 600px)" href="smallscreen.css"> 
-         <link rel="stylesheet"   media="screen and (min-width: 900px)"href="widescreen.css">
+        <link
+    rel="stylesheet"
+    media="screen and (max-width: 600px)"
+    href="smallscreen.css">
+<link rel="stylesheet" media="screen and (min-width: 900px)" href="wid.css">
         
         <meta name="viewport"  content="width=device-width, initial-scale=1.0">
         <title>Login</title>
     </head>
-    <body class="body">
+    <body class="body" style="background-color: #ff8c00;">
         <center>
             <div class="form-box">
+              
+                <div class="box-lado">  
                 <h2 class="faça-log">Faça Login!</h2>
-                <div class="box-lado">
-                    <form method="post">
+                    <form class="for" method="post">
                         <h1 class="h1">Login</h1><br><br>
                         <input type="text" placeholder="Nome" name="txt_login"/><br>
                         <input type="password" class="bt" placeholder="Senha" name="txt_senha"/><br><br>

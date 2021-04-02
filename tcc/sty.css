@@ -5,7 +5,6 @@
     display: block;
     width: 700px;
     height: 400px;
-    margin-top: 100px;
     border-radius: 30px;
 }
 .box-lado {
@@ -15,8 +14,8 @@
     height: 400px;
     border-radius: 30px;
 }
-.body {
-    background-color: lightgray;
+.bd{
+    background-color: #ff8c00;
 }
 
 input {
@@ -89,6 +88,114 @@ input {
     display: block;
     text-align: center;
     margin-top:160px;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+}
+.body{
+    background-color: #ff8c00;
+}
+
+
+.form-box {
+    background-color: #7B7B7B;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 440px;
+    height:340px;
+    border-radius: 20px;
+    background-image: url(img/nyan2.gif);
+}
+.box-lado {
+    background-color: white;
+    width: 250px;
+    height:340px;
+    font-size: 13px;
+    border-radius: 20px;
+}
+.body{
+    background-color: #ff8c00 ;
+   }
+
+.input {
+    padding: 5px;
+    width: 200px;
+}
+.bt {
+    margin-top: 10px;
+}
+.h1 {
+    margin-top: 20px;
+    color: black;
+}
+.faça-log{
+    margin-left:15px;
+    margin-right: auto;
+
+    font-size: 26px;
+    color: white;
+
+
+
+}
+.button {
+    background-color: #ff861d;
+    border: transparent;
+}
+
+.label {
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.saiba_bt {
+    transition: 0.5s;
+    width: 150px;
+    outline-style: none;
+    margin-top: 30px;
+    display: inline-block;
+    border: 1px solid #000000;
+    background-color: silver;
+    visibility: hidden;
+    display: none;
+
+}
+.saiba_bt:hover {
+    background-color: lightskyblue  ;
+    animation-name: saiba_bt;
+    animation-delay: 0.5s;
+    animation-duration: 0.5s;
+    animation-timing-function:linear;
+    animation-iteration-count: 1;
+
+}
+
+@keyframes saiba_bt {
+
+    0% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(10deg);
+    }
+    50% {
+        transform: rotate(0);
+    }
+    75% {
+        transform: rotate(-10deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
+.login{
+    background-color:rgba(255, 0, 0, 0.35) ;
+    width:400px;
+    display: block;
+    text-align: center;
+    margin-top:70px;
+    margin-left:auto;
+    margin-right: auto;
     border: 1px solid #000000;
     box-sizing: border-box;
 }
