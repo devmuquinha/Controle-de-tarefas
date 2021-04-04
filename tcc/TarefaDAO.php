@@ -49,11 +49,12 @@ class tarefa
                 }
 
                 if ($idTarefa != $dados['tb_tarefa_id']) {
+                    echo '<br> <br>';
 
                     echo "
-                         <br> Nome - " .        $dados['tb_tarefa_nome'] .
+                              Nome - " .        $dados['tb_tarefa_nome'] .
                         "<br> Descrição - " .   $dados['tb_tarefa_descricao'] .
-                        "<br> Nome Tarefa - " . $dados['tb_integrante_nome'];
+                        "<br> Nome integrantes - " . $dados['tb_integrante_nome'];
 
                     $nomes = '';
                     $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
@@ -120,14 +121,19 @@ class tarefa
     function excluir($tarefas)
     {
         global $conexao;
+        $excluidoBool = false;
         foreach ($tarefas as $tarefa) {
             try {
                 mysqli_query($conexao, "UPDATE tb_tarefas SET tb_tarefa_situacao = '1' WHERE tb_tarefa_id = '$tarefa';");
-                echo "Deletado";
+                $excluidoBool = true;
             } catch (Exception $erro) {
                 echo 'Erro - ' . $erro;
+                $excluidoBool = false;
             }
         }
+        if ($excluidoBool == true){
+            header('location:tarefas.php');
+        }    
     }
 
     function fazerLogin($login, $senha)
@@ -161,4 +167,3 @@ class tarefa
         exit;
     }
 }
-?>
