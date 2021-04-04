@@ -3,8 +3,8 @@
     <head>
         <title>TCC</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="estilo.css">
-        <link rel="stylesheet" media="screen and (min-width: 600px)" href="wid.css">
+        <link rel="stylesheet" href="estilos.css">
+        <link rel="stylesheet" href="normal.css">
     </head>
     <body class="body">
     <?php
@@ -16,24 +16,25 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
     header("location: tarefas.php");
     exit;
   } else {
-    echo '
+?>
     <center>
-    <div class="forms" >    
-    <form method = "POST" > <br>
-        <br>
+    <div class="form"><br>
+        <h1 class="h">Cadastrar Tarefas</h1>
+    <form method = "POST" >
             <input class="titulo-tarefa" name="tarefa_nome" placeholder="Titulo da Tarefa">
-                <br>
+
                 <textarea name="tarefa_descricao" class="desc-tarefa" placeholder="Descriçao da Tarefa" ></textarea>
                 <br>
                 <br>
-    ';
+<?php
     $tarefa->puxarIntegrantes();
     
-    echo '
+?>
         <input type="submit" name="btn_enviar" class="btn" value="ENVIAR" id="btn_enviar">
         <br>
         <br>
-        </form>';
+        </form>
+<?php
 
         if (isset($_POST['btn_enviar'])) {
             $nome = $_POST['tarefa_nome'];

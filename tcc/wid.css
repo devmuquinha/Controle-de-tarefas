@@ -1,88 +1,25 @@
-.forms {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    background-color: white;
-    width: 700px;
-    height: 850px;
-    border-radius: 20px 20px 20px 20px;
-
-    margin-bottom: 20px;
-}
-.tab {
-    width: 420px;
-
-}
-.thead {
-    width: 50px;
-}
-
-.nome {
-    font-size: 32px;
-    text-align: center;
-    width: 700px;
-
-}
-.chb {
-    height: 20px;
-    margin-left: 20px;
-
-}
-.body {
+.body{
     background-color: #ff8c00;
 }
-.desc-tarefa {
-    width: 450px;
-    height: 250px;
-    outline: none;
-    font-size: 36px;
-    border-radius: 8px;
-    outline: none;
-}
-.btn {
-    font-size: 28px;
-    width: 415px;
-    height: 60px;
-    background-color: #ff8c00;
-}
-.titulo-tarefa {
-    width: 450px;
-    height: 80px;
-    font-size: 32px;
-    outline: none;
-
-    border-radius: 10px;
-
-}
-.log {
-    background-color: rgba(255, 0, 0, 0.892);
-    border-radius: 0 0 20px 20px;
-    color: white;
-    height: 55px;
-    font-size: 32px;
-}
-.escolha {
-    font-size: 32px;
-}
-
 .form-box {
     background-color: #7B7B7B;
     margin-left: auto;
     margin-right: auto;
     display: block;
     width: 440px;
-    height: 340px;
+    height:340px;
     border-radius: 20px;
-    background-image: url("img/nyan2.gif");
+    background-image: url(img/nyan2.gif);
 }
 .box-lado {
     background-color: white;
     width: 250px;
-    height: 340px;
+    height:340px;
     font-size: 13px;
     border-radius: 20px;
 }
-.body {
+
+.bd{
     background-color: #ff8c00;
 }
 
@@ -90,33 +27,25 @@
     padding: 5px;
     width: 200px;
 }
+
 .bt {
     margin-top: 10px;
 }
-.h1 {
-    margin-top: 20px;
+
+.h{
+    margin-top: 50px;
     color: black;
-    font-family: Arial, Helvetica, sans-serif;
-}
-.faça-log {
-    margin-left: 15px;
-    margin-right: auto;
-
-    font-size: 26px;
-    color: white;
-
 }
 .button {
     background-color: #ff861d;
     border: transparent;
-    width: 215px;
 }
-
 .label {
     margin-top: 10px;
     font-family: Arial, Helvetica, sans-serif;
 
 }
+
 .saiba_bt {
     transition: 0.5s;
     width: 150px;
@@ -125,16 +54,14 @@
     display: inline-block;
     border: 1px solid #000000;
     background-color: silver;
-    visibility: hidden;
-    display: none;
 
 }
 .saiba_bt:hover {
-    background-color: lightskyblue;
+    background-color: lightskyblue  ;
     animation-name: saiba_bt;
     animation-delay: 0.5s;
     animation-duration: 0.5s;
-    animation-timing-function: linear;
+    animation-timing-function:linear;
     animation-iteration-count: 1;
 
 }
@@ -157,13 +84,21 @@
         transform: rotate(0);
     }
 }
-.login {
-    background-color: rgba(255, 0, 0, 0.35);
-    width: 400px;
+.faça-log{
+    margin-left:15px;
+    margin-right: auto;
+
+    font-size: 26px;
+    color: white;
+}
+
+.login{
+    background-color:rgba(255, 0, 0, 0.35) ;
+    width:400px;
     display: block;
     text-align: center;
-    margin-top: 70px;
-    margin-left: auto;
+    margin-top:70px;
+    margin-left:auto;
     margin-right: auto;
     border: 1px solid #000000;
     box-sizing: border-box;
