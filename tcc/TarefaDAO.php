@@ -45,16 +45,24 @@ class tarefa
         while ($dados = mysqli_fetch_array($informacao)) { //Puxa as tarefas separando por integrantes
 
             if ($tarefasIniciado == false) { //Lógica para abrir a 1º tabela se for a primeira vez passando dentro do while
-                echo "<table class='table'>";
+                 //TOPICOS PARA MELHOR ORGANIZAÇAO NO TOPO
+                echo "<table class='table' id='tab'>
+                <thead>
+                <tr>
+              
+                <th scope='col'>Nome da Tarefa" ."
+                </th><th scope='col'>Descriçao"."
+                </th><th scope='col'>Integrantes";
+
                 $tarefasIniciado = true;
             }
 
             if ($dados['tb_tarefa_situacao'] == '0') { //Verifica se a tarefa está concluida e mostra as não concluidas
 
                 if (str_contains($nomes, $_SESSION['login']) && $idTarefa != $dados['tb_tarefa_id']) { //Verifica se o nome da sessão é igual a algum dos nomes de integrantes e se é uma nova tarefa para acrescentar a checkbox de conclusão
-                    echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></tr>";
+                  
+                    echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></tr>";   
                 }
-
                 if ($idTarefa != $dados['tb_tarefa_id']) { //Se a tarefa acabou a tupla é fechada
                     echo " </th></thead>";
                 }
@@ -63,9 +71,9 @@ class tarefa
                     echo "
                     <thead>
                     <tr>
-                         <th scope='col'>Nome - " .        $dados['tb_tarefa_nome'] .
-                        "</th><th scope='col'>Descrição - " .   $dados['tb_tarefa_descricao'] .
-                        "</th><th scope='col'>Nome integrantes - " . $dados['tb_integrante_nome'];
+                         <th scope='col'>" .        $dados['tb_tarefa_nome'] .
+                        "</th><th scope='col'>" .   $dados['tb_tarefa_descricao'] .
+                        "</th><th scope='col'>" . $dados['tb_integrante_nome'];
 
                     $nomes = '';
                     $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
@@ -79,10 +87,12 @@ class tarefa
             }
         };
 
-        if (str_contains($nomes, $_SESSION['login'])) { //Verifica se o nome da sessão é igual a algum dos nomes de integrantes para acrescentar a checkbox de exclusão
+        if (str_contains($nomes, $_SESSION['login'])) { //Verifica se o nome da sessão é igual a algum dos nomes de integrantes para acrescentar a checkbox de exclusão       
             echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></tr>";
         }
         echo "</table>";
+        //BOTAO CONCLUIR
+        echo "<input type='submit' class='concluir' name='btnExcluir' value='Concluir'>";       
         $tarefasIniciado = false;
     }
 
@@ -100,7 +110,6 @@ class tarefa
             return $erro;
         }
     }
-
     function fazerInsertGrupos($integrantes, $tarefaId)
     {
         global $conexao;
