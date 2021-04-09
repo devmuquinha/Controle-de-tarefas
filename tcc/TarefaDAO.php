@@ -44,22 +44,22 @@ class tarefa
         $informacao = mysqli_query($conexao, $select);
         while ($dados = mysqli_fetch_array($informacao)) { //Puxa as tarefas separando por integrantes
 
-            if ($tarefasIniciado == false){
+            if ($tarefasIniciado == false) { //Lógica para abrir a 1º tabela se for a primeira vez passando dentro do while
                 echo "<table class='table'>";
                 $tarefasIniciado = true;
-
             }
 
-            if ($dados['tb_tarefa_situacao'] == '0') {
-                if (str_contains($nomes, $_SESSION['login']) && $idTarefa != $dados['tb_tarefa_id']) {
+            if ($dados['tb_tarefa_situacao'] == '0') { //Verifica se a tarefa está concluida e mostra as não concluidas
+
+                if (str_contains($nomes, $_SESSION['login']) && $idTarefa != $dados['tb_tarefa_id']) { //Verifica se o nome da sessão é igual a algum dos nomes de integrantes e se é uma nova tarefa para acrescentar a checkbox de conclusão
                     echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></tr>";
                 }
-                
-                if ($idTarefa != $dados['tb_tarefa_id']) {
+
+                if ($idTarefa != $dados['tb_tarefa_id']) { //Se a tarefa acabou a tupla é fechada
                     echo " </th></thead>";
                 }
 
-                if ($idTarefa != $dados['tb_tarefa_id']) {
+                if ($idTarefa != $dados['tb_tarefa_id']) { //Se a tarefa puxada for nova é criada uma nova tupla
                     echo "
                     <thead>
                     <tr>
@@ -70,7 +70,7 @@ class tarefa
                     $nomes = '';
                     $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
                     $idTarefa = $dados['tb_tarefa_id'];
-                } else {
+                } else { //Se a tarefa puxara for a mesma é acrescentado um integrante
                     echo ", " . $dados['tb_integrante_nome'];
                     $nomes = $nomes . ' ' . $dados['tb_integrante_nome'] . "";
                 }
@@ -79,12 +79,11 @@ class tarefa
             }
         };
 
-        if (str_contains($nomes, $_SESSION['login'])) {
+        if (str_contains($nomes, $_SESSION['login'])) { //Verifica se o nome da sessão é igual a algum dos nomes de integrantes para acrescentar a checkbox de exclusão
             echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></tr>";
         }
         echo "</table>";
         $tarefasIniciado = false;
-
     }
 
     function pegaIdTarefa()
