@@ -28,6 +28,7 @@ class tarefa
         $idTarefa = '';
         $nomes = '';
         $tarefaId = '';
+        $tarefasIniciado = false;
 
         $select = "select tb_tarefas.tb_tarefa_id, tb_tarefas.tb_tarefa_nome, tb_tarefas.tb_tarefa_descricao, tb_integrantes.tb_integrante_nome, tb_tarefas.tb_tarefa_situacao, tb_grupos.tb_integrante_id
         from tb_grupos
@@ -43,19 +44,25 @@ class tarefa
         $informacao = mysqli_query($conexao, $select);
         while ($dados = mysqli_fetch_array($informacao)) { //Puxa as tarefas separando por integrantes
 
+            if ($tarefasIniciado == false){
+                echo "<table class='table'>";
+                $tarefasIniciado = true;
+
+            }
+
             if ($dados['tb_tarefa_situacao'] == '0') {
                 if (str_contains($nomes, $_SESSION['login']) && $idTarefa != $dados['tb_tarefa_id']) {
-                    echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'>";
+                    echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></tr>";
+                }
+                
+                if ($idTarefa != $dados['tb_tarefa_id']) {
+                    echo " </th></thead>";
                 }
 
                 if ($idTarefa != $dados['tb_tarefa_id']) {
-                    echo '<br> <br>';
-
-
-echo " 
-<table class='table'>
-<thead>
-<tr>
+                    echo " <br> <br>
+                    <thead>
+                    <tr>
                          <th scope='col'>Nome - " .        $dados['tb_tarefa_nome'] .
                         "</th><th scope='col'>Descrição - " .   $dados['tb_tarefa_descricao'] .
                         "</th><th scope='col'>Nome integrantes - " . $dados['tb_integrante_nome'];
@@ -65,17 +72,19 @@ echo "
                     $idTarefa = $dados['tb_tarefa_id'];
                 } else {
                     echo ", " . $dados['tb_integrante_nome'];
-                    $nomes = $nomes . ' ' . $dados['tb_integrante_nome']."</th></tr></thead></table>";
+                    $nomes = $nomes . ' ' . $dados['tb_integrante_nome'] . "";
                 }
                 $tarefaId = $dados['tb_tarefa_id'];
             } else {
             }
-
         };
 
         if (str_contains($nomes, $_SESSION['login'])) {
-            echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'>";
+            echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></tr>";
         }
+        echo "</table>";
+        $tarefasIniciado = false;
+
     }
 
     function pegaIdTarefa()
@@ -135,9 +144,9 @@ echo "
                 $excluidoBool = false;
             }
         }
-        if ($excluidoBool == true){
+        if ($excluidoBool == true) {
             header('location:tarefas.php');
-        }    
+        }
     }
 
     function fazerLogin($login, $senha)
@@ -145,7 +154,7 @@ echo "
         global $conexao;
 
         $login = mysqli_real_escape_string($conexao, $login);
-        $senha = mysqli_real_escape_string($conexao,$senha);
+        $senha = mysqli_real_escape_string($conexao, $senha);
         $selectLogin =  "SELECT * FROM tb_integrantes WHERE tb_integrantes.tb_integrante_nome = '$login' AND tb_integrantes.tb_integrante_senha = '$senha';";
 
         $resultado = mysqli_query($conexao, $selectLogin);
