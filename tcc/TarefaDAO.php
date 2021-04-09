@@ -60,7 +60,7 @@ class tarefa
                 }
 
                 if ($idTarefa != $dados['tb_tarefa_id']) {
-                    echo " <br> <br>
+                    echo "
                     <thead>
                     <tr>
                          <th scope='col'>Nome - " .        $dados['tb_tarefa_nome'] .
