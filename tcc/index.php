@@ -4,7 +4,7 @@
         <title>TCC</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
 
-        <link rel="stylesheet" type="text/css" href="sma.css">
+        <link rel="stylesheet" type="text/css" href="index.css">
     </head>
     <body class="body">
     <a href="tarefas.php"><img class="seta" src="img/seta.png" alt=""></a>

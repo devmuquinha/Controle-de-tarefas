@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="tarefas.css">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <title>Tarefas</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="task.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link
+            href='https://fonts.googleapis.com/css?family=Open+Sans'
+            rel='stylesheet'
+            type='text/css'>
 
-<body>
-  <?php
+        <title>Tarefas</title>
+    </head>
+    <body class="body">
+        <form action="" method="POST">
+            <input type='submit' class="quit" name='btn_sair' value='Sair'>
+        </form>
+        <label for="" class="lab">Tarefas</label>
+    <?php
   session_start();
   require_once 'TarefaDAO.php';
   $tarefa = new Tarefa;
@@ -20,11 +28,11 @@
     header("location: login.php");
     exit;
   } else {
-    echo "<form method='post'><br><br><input type='submit' name='btnExcluir' id='btnExcluir' value='Excluir'> <input type='submit' name='btn_sair' id='btn_sair' value='Sair'> <br>";
+    echo "<form class='form_task' method='post'>";
     $tarefa->puxarTarefas();
+   
     echo "</form>";
   }
-
   if (isset($_POST['btn_sair'])) {
     $tarefa->deslogar();
   }
@@ -34,10 +42,9 @@
       $tarefas = $_POST['ckbx_tarefas'];
       $tarefa->excluir($tarefas);
     } else {
-      echo 'Nenhuma tarefa selecionada!';
+      echo '<div class="alert-danger">Nenhuma tarefa selecionada!';
     }
   }
   ?>
-</body>
-
+    </body>
 </html>
