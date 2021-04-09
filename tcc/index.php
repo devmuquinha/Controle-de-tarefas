@@ -3,10 +3,11 @@
     <head>
         <title>TCC</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="estilos.css">
-        <link rel="stylesheet" href="normal.css">
+
+        <link rel="stylesheet" type="text/css" href="sma.css">
     </head>
     <body class="body">
+    <a href="tarefas.php"><img class="seta" src="img/seta.png" alt=""></a>
     <?php
 error_reporting(E_ALL);
 session_start();

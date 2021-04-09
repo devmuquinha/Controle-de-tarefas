@@ -51,17 +51,21 @@ class tarefa
                 if ($idTarefa != $dados['tb_tarefa_id']) {
                     echo '<br> <br>';
 
-                    echo "
-                              Nome - " .        $dados['tb_tarefa_nome'] .
-                        "<br> Descrição - " .   $dados['tb_tarefa_descricao'] .
-                        "<br> Nome integrantes - " . $dados['tb_integrante_nome'];
+
+echo " 
+<table class='table'>
+<thead>
+<tr>
+                         <th scope='col'>Nome - " .        $dados['tb_tarefa_nome'] .
+                        "</th><th scope='col'>Descrição - " .   $dados['tb_tarefa_descricao'] .
+                        "</th><th scope='col'>Nome integrantes - " . $dados['tb_integrante_nome'];
 
                     $nomes = '';
                     $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
                     $idTarefa = $dados['tb_tarefa_id'];
                 } else {
                     echo ", " . $dados['tb_integrante_nome'];
-                    $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
+                    $nomes = $nomes . ' ' . $dados['tb_integrante_nome']."</th></tr></thead></table>";
                 }
                 $tarefaId = $dados['tb_tarefa_id'];
             } else {
