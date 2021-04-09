@@ -45,28 +45,40 @@ class tarefa
         while ($dados = mysqli_fetch_array($informacao)) { //Puxa as tarefas separando por integrantes
 
             if ($tarefasIniciado == false){
-                echo "<table class='table'>";
+                echo "<table class='table'>
+                <tbody>
+                <thead>
+                <tr>
+                     <th scope='col'>#Nome" . 
+                    "</th><th scope='col'>#Descrição" .
+                    "</th><th scope='col'>#Nome integrantes 
+                </tr>
+                </thead>
+                </tbody>
+                
+                
+                ";
                 $tarefasIniciado = true;
-
+              
             }
 
             if ($dados['tb_tarefa_situacao'] == '0') {
                 if (str_contains($nomes, $_SESSION['login']) && $idTarefa != $dados['tb_tarefa_id']) {
                     echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></tr>";
                 }
+              
                 
                 if ($idTarefa != $dados['tb_tarefa_id']) {
                     echo " </th></thead>";
                 }
 
                 if ($idTarefa != $dados['tb_tarefa_id']) {
-                    echo " <br> <br>
+                    echo "<br>
                     <thead>
                     <tr>
-                         <th scope='col'>Nome - " .        $dados['tb_tarefa_nome'] .
-                        "</th><th scope='col'>Descrição - " .   $dados['tb_tarefa_descricao'] .
-                        "</th><th scope='col'>Nome integrantes - " . $dados['tb_integrante_nome'];
-
+                         <th scope='col'>" .        $dados['tb_tarefa_nome'] .
+                        "</th><th scope='col'>" .   $dados['tb_tarefa_descricao'] .
+                        "</th><th scope='col'>" . $dados['tb_integrante_nome'];
                     $nomes = '';
                     $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
                     $idTarefa = $dados['tb_tarefa_id'];
@@ -80,8 +92,12 @@ class tarefa
         };
 
         if (str_contains($nomes, $_SESSION['login'])) {
-            echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></tr>";
-        }
+           
+
+            echo " <th scope='col'><input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></th>";
+         
+        } 
+
         echo "</table>";
         $tarefasIniciado = false;
 

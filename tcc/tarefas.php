@@ -11,6 +11,7 @@
 </head>
 
 <body>
+<input type='submit' name='btn_sair' id='btn_sair' value='Sair'>
   <?php
   session_start();
   require_once 'TarefaDAO.php';
@@ -19,9 +20,14 @@
   if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
-  } else {
-    echo "<form method='post'><br><br><input type='submit' name='btnExcluir' id='btnExcluir' value='Excluir'> <input type='submit' name='btn_sair' id='btn_sair' value='Sair'> <br>";
+  } else { echo "<table class='table'>
+          <thead>
+          <tr>";
+    echo "<form method='post'><br><br> <br>";
+   
     $tarefa->puxarTarefas();
+    echo "<th scope='col'><input type='submit' src='img/ch.png' width='38px' height='38px'  name='btnExcluir' id='btnExcluir' value='Concluir'></th></tr>";
+
     echo "</form>";
   }
 
