@@ -51,7 +51,7 @@ class tarefa
                 <tr>
               
                 <th scope='col'>Nome da Tarefa" ."
-                </th><th scope='col'>Descriçao"."
+                </th><th scope='col'>Descrição"."
                 </th><th scope='col'>Integrantes";
 
                 $tarefasIniciado = true;
