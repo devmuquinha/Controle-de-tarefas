@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="task.css">
+        <link rel="stylesheet" type="text/css" href="css-da-pagina/tarefa.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link
             href='https://fonts.googleapis.com/css?family=Open+Sans'
@@ -18,7 +18,7 @@
         <form action="" method="POST">
             <input type='submit' class="quit" name='btn_sair' value='Sair'>
         </form>
-        <label for="" class="lab">Tarefas</label>
+        <label for="" class="tarefa">Tarefas</label>
     <?php
   session_start();
   require_once 'TarefaDAO.php';
