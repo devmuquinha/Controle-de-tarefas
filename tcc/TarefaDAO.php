@@ -48,7 +48,7 @@ class tarefa
                  //TOPICOS PARA MELHOR ORGANIZAÇAO NO TOPO
                 echo "<table class='table' id='tab'>
                 <thead>
-                <tr>
+                <tr class='tr'>
               
                 <th scope='col'>Nome da Tarefa" ."
                 </th><th scope='col'>Descrição"."
@@ -70,7 +70,7 @@ class tarefa
                 if ($idTarefa != $dados['tb_tarefa_id']) { //Se a tarefa puxada for nova é criada uma nova tupla
                     echo "
                     <thead>
-                    <tr>
+                    <tr class='tr'>
                          <th scope='col'>" .        $dados['tb_tarefa_nome'] .
                         "</th><th scope='col'>" .   $dados['tb_tarefa_descricao'] .
                         "</th><th scope='col'>" . $dados['tb_integrante_nome'];
@@ -88,11 +88,11 @@ class tarefa
         };
 
         if (str_contains($nomes, $_SESSION['login'])) { //Verifica se o nome da sessão é igual a algum dos nomes de integrantes para acrescentar a checkbox de exclusão       
-            echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></tr>";
+            echo " <input type='checkbox' ='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></tr>";
         }
         echo "</table>";
         //BOTAO CONCLUIR
-        echo "<input type='submit' class='concluir' name='btnExcluir' value='Concluir'>";       
+        echo "<input type='submit' class='concluir' name='btnExcluir' value='Concluir'><br>";       
         $tarefasIniciado = false;
     }
 
