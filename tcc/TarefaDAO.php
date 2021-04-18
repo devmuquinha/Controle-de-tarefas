@@ -7,7 +7,7 @@ class tarefa
         global $conexao;
         $select = "select * from tb_integrantes";
         $informacao = mysqli_query($conexao, $select);
-        echo '<label for="integrantes" class="escolha">Escolha os integrantes:</label><br>';
+        echo '<br><label for="integrantes" class="escolha">Escolha os integrantes:</label><br>';
         while ($dados = mysqli_fetch_array($informacao)) { //Puxa integrantes de dentro do banco
             echo "<table class='tab' border='1'>
             <thead class='thead' >
@@ -50,10 +50,10 @@ class tarefa
                 <thead>
                 <tr class='tr'>
               
-                <th scope='col'>Nome da Tarefa" ."
-                </th><th scope='col'>Descrição"."
-                </th><th scope='col'>Integrantes";
-
+                <th scope='col' class='nomee'>Nome da Tarefa" ."
+                </th><th scope='col desc' class='desc'>Descrição"."
+                </th><th scope='col inter' class='inter'>Integrantes";
+                echo " </th></thead>";
                 $tarefasIniciado = true;
             }
 
@@ -84,6 +84,7 @@ class tarefa
                 }
                 $tarefaId = $dados['tb_tarefa_id'];
             } else {
+                
             }
         };
 
@@ -108,6 +109,7 @@ class tarefa
             return $tarefaId;
         } catch (Exception $erro) {
             return $erro;
+           
         }
     }
     function fazerInsertGrupos($integrantes, $tarefaId)
@@ -162,7 +164,7 @@ class tarefa
         global $conexao;
 
         $login = mysqli_real_escape_string($conexao, $login);
-        $senha = mysqli_real_escape_string($conexao, $senha);
+        $senha = mysqli_real_escape_string($conexao, md5($senha));
         $selectLogin =  "SELECT * FROM tb_integrantes WHERE tb_integrantes.tb_integrante_nome = '$login' AND tb_integrantes.tb_integrante_senha = '$senha';";
 
         $resultado = mysqli_query($conexao, $selectLogin);
