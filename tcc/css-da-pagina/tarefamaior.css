@@ -1,0 +1,68 @@
+.form_task {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1100px;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    margin-top: 40px;
+    border-radius: 10px;
+}
+.body {
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+}
+
+.alert-danger {
+    width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 30px;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+}
+.concluir {
+    width: 200px;
+    margin-left: 870px;
+    display: block;
+    background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+    padding: 3px;
+    outline: none;
+    border: none;
+    color: white;
+
+}
+.quit {
+    width: 200px;
+    margin-left: 1010px;
+    display: block;
+    background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+    padding: 3px;
+    outline: none;
+    color: black;
+    border: none;
+    margin-top: 50px;
+
+}
+
+.tarefa {
+    font-size: 48px;
+    font-family: Snap ITC;
+    text-align: center;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 30px;
+}
+
+.nomee {
+    font-size: 22px;
+}
+.desc {
+    font-size: 22px;
+}
+.inter {
+    font-size: 22px;
+}
