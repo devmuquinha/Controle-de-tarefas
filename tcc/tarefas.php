@@ -6,6 +6,15 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css-da-pagina/tarefa.css">
+        <link
+            rel="stylesheet"
+            href="css-da-pagina/tarefamenor.css"
+            media="screen and (max-width: 1225px)"/>
+        <link
+            rel="stylesheet"
+            href="css-da-pagina/tarefamaior.css"
+            media="screen and (min-width: 1125px)"/>
+
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link
             href='https://fonts.googleapis.com/css?family=Open+Sans'
@@ -45,6 +54,7 @@
       echo '<div class="alert-danger">Nenhuma tarefa selecionada!';
     }
   }
+  
   ?>
     </body>
 </html>
