@@ -1,5 +1,5 @@
 <?php
-include 'Conexao.php';
+include 'conexao.php';
 class tarefa
 {
     function puxarIntegrantes()
@@ -8,7 +8,7 @@ class tarefa
         $select = "select * from tb_integrantes";
         $informacao = mysqli_query($conexao, $select);
         echo '<br><label for="integrantes" class="escolha">Escolha os integrantes:</label><br>';
-        while ($dados = mysqli_fetch_array($informacao)) { //Puxa integrantes de dentro do banco
+        while ($dados = mysqli_fetch_array($informacao)) { // Puxa integrantes de dentro do banco
             echo "<table class='tab' border='1'>
             <thead class='thead' >
                 <tr class='tr'>
@@ -42,32 +42,33 @@ class tarefa
         $idMaximo = mysqli_fetch_array($InformacaoidMaximo);
         $idMaximo = $idMaximo[0];
         $informacao = mysqli_query($conexao, $select);
-        while ($dados = mysqli_fetch_array($informacao)) { //Puxa as tarefas separando por integrantes
+        while ($dados = mysqli_fetch_array($informacao)) { // Puxa as tarefas separando por integrantes
 
-            if ($tarefasIniciado == false) { //Lógica para abrir a 1º tabela se for a primeira vez passando dentro do while
-                 //TOPICOS PARA MELHOR ORGANIZAÇAO NO TOPO
+            if ($tarefasIniciado == false) { // Lógica para abrir a 1º tabela se for a primeira vez passando dentro do while
+
+                //Parte de cima da tabela
                 echo "<table class='table' id='tab'>
                 <thead>
                 <tr class='tr'>
               
-                <th scope='col' class='nomee'>Nome da Tarefa" ."
-                </th><th scope='col desc' class='desc'>Descrição"."
+                <th scope='col' class='nomee'>Nome da Tarefa" . "
+                </th><th scope='col desc' class='desc'>Descrição" . "
                 </th><th scope='col inter' class='inter'>Integrantes";
                 echo " </th></thead>";
                 $tarefasIniciado = true;
             }
 
-            if ($dados['tb_tarefa_situacao'] == '0') { //Verifica se a tarefa está concluida e mostra as não concluidas
+            if ($dados['tb_tarefa_situacao'] == '0') { // Verifica se a tarefa está concluida e mostra as não concluidas
 
-                if (str_contains($nomes, $_SESSION['login']) && $idTarefa != $dados['tb_tarefa_id']) { //Verifica se o nome da sessão é igual a algum dos nomes de integrantes e se é uma nova tarefa para acrescentar a checkbox de conclusão
-                  
-                    echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></tr>";   
+                if (str_contains($nomes, $_SESSION['login']) && $idTarefa != $dados['tb_tarefa_id']) { // Verifica se o nome da sessão é igual a algum dos nomes de integrantes e se é uma nova tarefa para acrescentar a checkbox de conclusão
+
+                    echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></tr>";
                 }
-                if ($idTarefa != $dados['tb_tarefa_id']) { //Se a tarefa acabou a tupla é fechada
+                if ($idTarefa != $dados['tb_tarefa_id']) { // Se a tarefa acabou a tupla é fechada
                     echo " </th></thead>";
                 }
 
-                if ($idTarefa != $dados['tb_tarefa_id']) { //Se a tarefa puxada for nova é criada uma nova tupla
+                if ($idTarefa != $dados['tb_tarefa_id']) { // Se a tarefa puxada for nova é criada uma nova tupla
                     echo "
                     <thead>
                     <tr class='tr'>
@@ -78,22 +79,21 @@ class tarefa
                     $nomes = '';
                     $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
                     $idTarefa = $dados['tb_tarefa_id'];
-                } else { //Se a tarefa puxara for a mesma é acrescentado um integrante
+                } else { // Se a tarefa puxara for a mesma é acrescentado um integrante
                     echo ", " . $dados['tb_integrante_nome'];
                     $nomes = $nomes . ' ' . $dados['tb_integrante_nome'] . "";
                 }
                 $tarefaId = $dados['tb_tarefa_id'];
             } else {
-                
             }
         };
 
-        if (str_contains($nomes, $_SESSION['login'])) { //Verifica se o nome da sessão é igual a algum dos nomes de integrantes para acrescentar a checkbox de exclusão       
+        if (str_contains($nomes, $_SESSION['login'])) { // Verifica se o nome da sessão é igual a algum dos nomes de integrantes para acrescentar a checkbox de exclusão       
             echo " <input type='checkbox' ='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></tr>";
         }
         echo "</table>";
-        //BOTAO CONCLUIR
-        echo "<input type='submit' class='concluir' name='btnExcluir' value='Concluir'><br>";       
+        
+        echo "<input type='submit' class='concluir' name='btnExcluir' value='Concluir'><br>";
         $tarefasIniciado = false;
     }
 
@@ -109,7 +109,6 @@ class tarefa
             return $tarefaId;
         } catch (Exception $erro) {
             return $erro;
-           
         }
     }
     function fazerInsertGrupos($integrantes, $tarefaId)
@@ -125,7 +124,7 @@ class tarefa
             }
             echo "<center style='margin-top:50px; widht:120px;' class='alert alert-info' ><h5 style='margin-left: auto;
             margin-right: auto; 
-            width:10px;'>Inserido!</h5></center>";
+            width:10px;'> Inserido! </h5></center>";
         } catch (Exception $e) {
         }
     }
@@ -145,9 +144,12 @@ class tarefa
     {
         global $conexao;
         $excluidoBool = false;
+        $nome = $_SESSION['login'];
         foreach ($tarefas as $tarefa) {
             try {
                 mysqli_query($conexao, "UPDATE tb_tarefas SET tb_tarefa_situacao = '1' WHERE tb_tarefa_id = '$tarefa';");
+                mysqli_query($conexao, "INSERT INTO tb_logs(tb_log_nome, tb_log_integrante_nome, tb_tarefa_id) values ('mudança', '$nome', '$tarefa');");
+
                 $excluidoBool = true;
             } catch (Exception $erro) {
                 echo 'Erro - ' . $erro;
@@ -164,14 +166,15 @@ class tarefa
         global $conexao;
 
         $login = mysqli_real_escape_string($conexao, $login);
-        $senha = mysqli_real_escape_string($conexao, md5($senha));
+        $senha = mysqli_real_escape_string($conexao, $senha);
+        $senha = md5($senha);
         $selectLogin =  "SELECT * FROM tb_integrantes WHERE tb_integrantes.tb_integrante_nome = '$login' AND tb_integrantes.tb_integrante_senha = '$senha';";
 
         $resultado = mysqli_query($conexao, $selectLogin);
         if ($resultado->num_rows > 0) {
             $_SESSION['login'] = $login;
             $_SESSION['senha'] = $senha;
-            //FAZER O QUE QUISER AQUI 
+
             header('location:index.php');
             $_SESSION["loggedin"] = true;
             $_SESSION["login"] = $login;
