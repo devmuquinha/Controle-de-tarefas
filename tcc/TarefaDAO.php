@@ -60,7 +60,7 @@ class tarefa
 
             if ($dados['tb_tarefa_situacao'] == '0') { // Verifica se a tarefa está concluida e mostra as não concluidas
 
-                if (str_contains($nomes, $_SESSION['login']) && $idTarefa != $dados['tb_tarefa_id']) { // Verifica se o nome da sessão é igual a algum dos nomes de integrantes e se é uma nova tarefa para acrescentar a checkbox de conclusão
+                if (strpos($nomes, $_SESSION['login']) && $idTarefa != $dados['tb_tarefa_id']) { // Verifica se o nome da sessão é igual a algum dos nomes de integrantes e se é uma nova tarefa para acrescentar a checkbox de conclusão
 
                     echo " <input type='checkbox' id='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></tr>";
                 }
@@ -88,7 +88,7 @@ class tarefa
             }
         };
 
-        if (str_contains($nomes, $_SESSION['login'])) { // Verifica se o nome da sessão é igual a algum dos nomes de integrantes para acrescentar a checkbox de exclusão       
+        if (strpos($nomes, $_SESSION['login'])) { // Verifica se o nome da sessão é igual a algum dos nomes de integrantes para acrescentar a checkbox de exclusão       
             echo " <input type='checkbox' ='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></tr>";
         }
         echo "</table>";
