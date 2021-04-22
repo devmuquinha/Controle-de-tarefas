@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="css-da-pagina/tarefa.css">
         <link
             rel="stylesheet"
-            href="css-da-pagina/tarefamenor.css"
+            href="css-da-pagina/tarefamenorr.css"
             media="screen and (max-width: 1225px)"/>
         <link
             rel="stylesheet"
@@ -24,8 +24,10 @@
         <title>Tarefas</title>
     </head>
     <body class="body">
+
         <form action="" method="POST">
             <input type='submit' class="quit" name='btn_sair' value='Sair'>
+
         </form>
         <label for="" class="tarefa">Tarefas</label>
     <?php
@@ -40,7 +42,11 @@
     echo "<form class='form_task' method='post'>";
     $tarefa->puxarTarefas();
    
-    echo "</form>";
+    echo "</form>
+    
+    
+    
+    ";
   }
   if (isset($_POST['btn_sair'])) {
     $tarefa->deslogar();
@@ -51,10 +57,18 @@
       $tarefas = $_POST['ckbx_tarefas'];
       $tarefa->excluir($tarefas);
     } else {
+
       echo '<div class="alert-danger">Nenhuma tarefa selecionada!';
     }
   }
   
   ?>
-    </body>
+    </div>
+    <center>
+        <br>
+        <a
+            href="https://drive.google.com/drive/u/1/folders/1dZbn48AqZq5DBivuVo9tV4PG1LGxPz5F"
+            class="drive">ATA'S JÁ CONCLUIDAS</a><br><br>
+    </center>
+</body>
 </html>

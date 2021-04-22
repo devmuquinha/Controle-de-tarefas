@@ -94,6 +94,7 @@ class tarefa
         echo "</table>";
         
         echo "<input type='submit' class='concluir' name='btnExcluir' value='Concluir'><br>";
+
         $tarefasIniciado = false;
     }
 
