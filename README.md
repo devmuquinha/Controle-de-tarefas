@@ -3,6 +3,8 @@
 Fazendo login <br>
 <img src="tcc/img/login.png" width="560"> <br>
 Líder acrescentando uma tarefa <br>
-<img src="tcc/img/acrescentarTarefas.png" width="560"> <br>
+<img src="tcc/img/acrescentandoTarefas.PNG" width="560"> <br>
 Integrantes marcando uma tarefa como concluida <br>
 <img src="tcc/img/tarefas.png" width="560"> <br>
+Líder verificando tarefas concluídas <br>
+<img src="tcc/img/verificandoTarefasConcluidas.PNG" width="560"> <br>
