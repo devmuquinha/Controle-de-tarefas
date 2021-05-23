@@ -28,7 +28,6 @@ class tarefa
         $idTarefa = '';
         $nomes = '';
         $tarefaId = '';
-        $tarefasIniciado = false;
 
         $select = "select tb_tarefas.tb_tarefa_id, tb_tarefas.tb_tarefa_nome, tb_tarefas.tb_tarefa_descricao, tb_integrantes.tb_integrante_nome, tb_tarefas.tb_tarefa_situacao, tb_grupos.tb_integrante_id
         from tb_grupos
@@ -43,20 +42,6 @@ class tarefa
         $idMaximo = $idMaximo[0];
         $informacao = mysqli_query($conexao, $select);
         while ($dados = mysqli_fetch_array($informacao)) { // Puxa as tarefas separando por integrantes
-
-            if ($tarefasIniciado == false) { // Lógica para abrir a 1º tabela se for a primeira vez passando dentro do while
-
-                //Parte de cima da tabela
-                echo "<table class='table' id='tab'>
-                <thead>
-                <tr class='tr'>
-              
-                <th scope='col' class='nomee'>Nome da Tarefa" . "
-                </th><th scope='col desc' class='desc'>Descrição" . "
-                </th><th scope='col inter' class='inter'>Integrantes";
-                echo " </th></thead>";
-                $tarefasIniciado = true;
-            }
 
             if ($dados['tb_tarefa_situacao'] == '0') { // Verifica se a tarefa está concluida e mostra as não concluidas
 
@@ -92,10 +77,50 @@ class tarefa
             echo " <input type='checkbox' ='chb' name = 'ckbx_tarefas[]' value='$tarefaId'></tr>";
         }
         echo "</table>";
-        
+
         echo "<input type='submit' class='concluir' name='btnExcluir' value='Concluir'><br>";
 
         $tarefasIniciado = false;
+    }
+
+    function puxarTarefasConcluidas()
+    {
+        global $conexao;
+        $tarefaId = '';
+
+        $select = "select tb_tarefas.tb_tarefa_id, tb_tarefas.tb_tarefa_nome, tb_tarefas.tb_tarefa_descricao, tb_integrantes.tb_integrante_nome, tb_tarefas.tb_tarefa_situacao, tb_grupos.tb_integrante_id
+        from tb_grupos
+        inner join tb_tarefas
+        on tb_grupos.tb_tarefa_id = tb_tarefas.tb_tarefa_id
+        inner join tb_integrantes
+        on tb_integrantes.tb_integrante_id = tb_grupos.tb_integrante_id
+        order by tb_tarefas.tb_tarefa_id;";
+
+        $InformacaoidMaximo = mysqli_query($conexao, "SELECT MAX(tb_tarefa_id) FROM tb_tarefas;");
+        $idMaximo = mysqli_fetch_array($InformacaoidMaximo);
+        $idMaximo = $idMaximo[0];
+        $informacao = mysqli_query($conexao, $select);
+        while ($dados = mysqli_fetch_array($informacao)) { // Puxa as tarefas separando por integrantes
+
+            if ($dados['tb_tarefa_situacao'] == '1') { // Verifica se a tarefa está concluida e mostra as concluidas
+                if ($tarefaId != $dados['tb_tarefa_id']) { // Se a tarefa puxada for nova é criada uma nova tupla
+                    echo " 
+                    <thead>
+                    <tr class='tr'>
+                         <th scope='col'>" .        $dados['tb_tarefa_nome'] .
+                        "<br> </th><th scope='col'>" .   $dados['tb_tarefa_descricao'] .
+                        "<br> </th><th scope='col'>" . $dados['tb_integrante_nome'];
+
+                    $nomes = '';
+                    $nomes = $nomes . ' ' . $dados['tb_integrante_nome'];
+                } else { // Se a tarefa puxara for a mesma é acrescentado um integrante
+                    echo ", " . $dados['tb_integrante_nome'];
+                }
+                $tarefaId = $dados['tb_tarefa_id'];
+            } else {
+            }
+        };
+        echo "</table>";
     }
 
     function pegaIdTarefa()

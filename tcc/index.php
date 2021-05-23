@@ -4,13 +4,14 @@
 <head>
     <title>TCC</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css-da-pagina/indexmaior.css" media="screen and (min-width:1125px)" />
 </head>
 
 <body class="body">
     <h1 class="h" style="font-family: Snap ITC;">TAREFA</h1>
-    <a href="tarefas.php"><img class="seta" src="img/seta.png" alt=""></a>
+    <a href="tarefas.php"> <img class="setas" src="img/setaT.png" alt=""> </a><br><br><br>
+    <a href="tarefasConcluidas.php"> <img class="setas" src="img/setaTC.png" alt=""> </a>
 
     <?php
     error_reporting(E_ALL);
@@ -24,14 +25,11 @@
     ?>
         <center>
             <div class="form">
-
                 <form method="POST">
                     <input class="titulo-tarefa" name="tarefa_nome" placeholder="Titulo da Tarefa">
                     <textarea name="tarefa_descricao" class="desc-tarefa" placeholder="Descriçao da Tarefa"></textarea>
-
                     <?php
                     $tarefa->puxarIntegrantes();
-
                     ?>
                     <input type="submit" name="btn_enviar" class="btn" value="ENVIAR" id="btn_enviar">
 

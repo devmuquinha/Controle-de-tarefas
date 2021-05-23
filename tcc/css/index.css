@@ -61,13 +61,22 @@
         padding: 10px;
         font-size: 22px;
     }
-    .seta {
-        width: 100px;
+    .setas {
+        width: 60px;
         margin-left: 820px;
-        margin-top: 40px;
-
+        float: right;
+        position: relative;
     }
-
+    .setas {
+        width: 60px;
+        margin-right: 10px;
+        float: right;
+    }
+    .setaC {
+        width: 60px;
+        margin-left: 10px;
+        float: left;
+    }
     .escolha {
         font-size: 24px;
     }
