@@ -24,7 +24,7 @@
     require_once 'TarefaDAO.php';
     $tarefa = new Tarefa;
 
-    if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION['login'] != 'Eduardo') {
+    if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION['login'] != 'Eduardo' && $_SESSION['login'] != 'Matheus') {
         header("location: tarefas.php");
         exit;
     } else {
