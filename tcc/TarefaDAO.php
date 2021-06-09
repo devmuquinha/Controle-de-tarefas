@@ -57,8 +57,8 @@ class tarefa
                     echo "
                     <thead>
                     <tr class='tr'>
-                         <th scope='col'>" .        $dados['tb_tarefa_nome'] .
-                        "</th><th scope='col'>" .   $dados['tb_tarefa_descricao'] .
+                         <th scope='col'>" .      $dados['tb_tarefa_nome'] .
+                        "</th><th scope='col'>" . $dados['tb_tarefa_descricao'] .
                         "</th><th scope='col'>" . $dados['tb_integrante_nome'];
 
                     $nomes = '';
